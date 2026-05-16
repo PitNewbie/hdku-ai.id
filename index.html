@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HDKU AI DOWNLOADER</title>
+    <title>HDKU AI.ID</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -21,7 +21,7 @@
                               radial-gradient(circle at 85% 75%, rgba(241, 7, 163, 0.15) 0%, transparent 50%);
             overflow: hidden;
         }
-   .chat-container {
+  .chat-container {
             width: 100%; max-width: 750px; height: 100vh; height: 100dvh;
             background: var(--card); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 20px;
@@ -29,23 +29,28 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             overflow: hidden; position: relative;
         }
-   .header {
+  .header {
             padding: 14px 20px; text-align: center; border-bottom: 1px solid var(--glass-border);
             background: rgba(0,0,0,0.2); position: relative; flex-shrink: 0;
         }
-   .header h1 {
+  .header h1 {
             font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px;
             background: linear-gradient(90deg, var(--primary), var(--primary-glow));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-   .header p { color: var(--text-dim); font-size: 0.8rem; margin-top: 4px; }
-   .clear-btn {
+  .header p { color: var(--text-dim); font-size: 0.8rem; margin-top: 4px; }
+  .user-badge {
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            font-size: 0.75rem; color: var(--primary-glow); font-weight: 600;
+            max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+  .clear-btn {
             position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
             background: rgba(255, 71, 87, 0.2); border: 1px solid var(--danger);
             color: var(--danger); width: 36px; height: 36px; border-radius: 10px;
             cursor: pointer; display: grid; place-items: center; transition: 0.2s;
         }
-   .clear-btn:hover { background: var(--danger); color: white; }
+  .clear-btn:hover { background: var(--danger); color: white; }
 
         #chat-window {
             flex: 1 1 auto; padding: 20px; padding-bottom: 10px;
@@ -56,36 +61,36 @@
         #chat-window::-webkit-scrollbar { width: 6px; }
         #chat-window::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
 
-   .bubble {
+  .bubble {
             max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 0.9rem;
             line-height: 1.5; animation: slideUp 0.25s ease; word-wrap: break-word;
         }
-   .user {
+  .user {
             align-self: flex-end; background: linear-gradient(135deg, var(--primary), var(--primary-glow));
             color: #fff; font-weight: 500; border-bottom-right-radius: 4px;
             box-shadow: 0 4px 15px rgba(123, 47, 247, 0.3);
         }
-   .ai {
+  .ai {
             align-self: flex-start; background: rgba(255,255,255,0.04);
             border: 1px solid var(--glass-border); border-bottom-left-radius: 4px;
         }
-   .ai.loading { display: flex; gap: 5px; padding: 14px 18px; }
-   .ai.loading span {
+  .ai.loading { display: flex; gap: 5px; padding: 14px 18px; }
+  .ai.loading span {
             width: 6px; height: 6px; background: var(--primary); border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out both;
         }
-   .ai.loading span:nth-child(1) { animation-delay: -0.32s; }
-   .ai.loading span:nth-child(2) { animation-delay: -0.16s; }
+  .ai.loading span:nth-child(1) { animation-delay: -0.32s; }
+  .ai.loading span:nth-child(2) { animation-delay: -0.16s; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } }
         @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-   .input-area {
+  .input-area {
             padding: 16px 20px; border-top: 1px solid var(--glass-border);
             display: flex; gap: 10px; background: rgba(0,0,0,0.3);
             flex-shrink: 0; position: relative; z-index: 10;
         }
-   .input-wrapper { flex: 1; display: flex; justify-content: center; }
+  .input-wrapper { flex: 1; display: flex; justify-content: center; gap: 8px; }
         #input {
             flex: 1; max-width: 600px; padding: 14px 18px; background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--glass-border); border-radius: 14px; color: var(--text);
@@ -95,78 +100,80 @@
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(123, 47, 247, 0.2);
         }
-        #send-btn {
+        #send-btn, #upload-btn {
             background: linear-gradient(135deg, var(--primary), var(--primary-glow)); border: none;
             color: white; width: 48px; height: 48px; border-radius: 14px; cursor: pointer;
             display: grid; place-items: center; transition: 0.3s; flex-shrink: 0;
         }
-        #send-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(241, 7, 163, 0.4); }
+        #send-btn:hover, #upload-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(241, 7, 163, 0.4); }
+        #upload-btn { background: #444; }
+        #file-input { display: none; }
 
-   .result-card {
+  .result-card {
             background: rgba(0,0,0,0.3); border-radius: 12px; padding: 14px;
             border: 1px solid var(--glass-border); margin-top: 8px;
         }
-   .video-preview {
+  .video-preview, .image-preview {
             width: 100%; max-height: 300px; object-fit: cover;
             border-radius: 10px; margin-bottom: 10px;
         }
-   .user-info {
+  .user-info {
             display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
         }
-   .user-info img {
+  .user-info img {
             width: 40px; height: 40px; border-radius: 50%;
             border: 2px solid var(--primary);
         }
-   .tt-stats {
+  .tt-stats {
             display: flex; justify-content: space-around; text-align: center;
             font-size: 12px; margin: 15px 0; padding: 10px 0;
             border-top: 1px solid #444; border-bottom: 1px solid #444;
         }
-   .tt-stats i { font-size: 16px; margin-bottom: 4px; color: #fe2c55; }
-   .desc-box {
+  .tt-stats i { font-size: 16px; margin-bottom: 4px; color: #fe2c55; }
+  .desc-box {
             background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px;
             font-size: 0.8rem; max-height: 80px; overflow-y: auto; white-space: pre-wrap;
             border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px;
         }
-   .video-info {
+  .video-info {
             display: flex; justify-content: space-between; font-size: 0.75rem;
             color: var(--text-dim); margin-bottom: 10px; padding: 0 4px;
         }
-   .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-   .quality-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 10px; }
-   .btn-small {
+  .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .quality-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 10px; }
+  .btn-small {
             padding: 10px; border-radius: 8px; border: none; font-weight: 600;
             cursor: pointer; color: white; display: flex; align-items: center;
             justify-content: center; gap: 6px; font-size: 0.85rem; transition: 0.2s;
         }
-   .btn-copy { background: #333; }
-   .btn-copy:hover { background: #444; }
-   .btn-dl { background: var(--whatsapp); }
-   .btn-dl-yt { background: var(--youtube); }
-   .btn-dl:hover,.btn-dl-yt:hover { opacity: 0.9; transform: translateY(-1px); }
-   .btn-dl:disabled,.btn-dl-yt:disabled { opacity: 0.6; cursor: not-allowed; }
-   .btn-quality { background: #444; font-size: 0.8rem; padding: 8px; }
-   .btn-quality:hover { background: var(--primary); }
+  .btn-copy { background: #333; }
+  .btn-copy:hover { background: #444; }
+  .btn-dl { background: var(--whatsapp); }
+  .btn-dl-yt { background: var(--youtube); }
+  .btn-dl:hover,.btn-dl-yt:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-dl:disabled,.btn-dl-yt:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-quality { background: #444; font-size: 0.8rem; padding: 8px; }
+  .btn-quality:hover { background: var(--primary); }
 
-   .photo-item {
+  .photo-item {
             display: flex; align-items: center; gap: 10px; margin-top: 8px;
             background: rgba(255,255,255,0.03); padding: 8px; border-radius: 8px;
         }
-   .photo-thumb { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
+  .photo-thumb { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
 
         code { background: rgba(123,47,247,0.2); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
-   .wa-link {
+  .wa-link {
             color: var(--whatsapp);
             text-decoration: none;
             font-weight: 600;
             transition: 0.2s;
         }
-   .wa-link:hover {
+  .wa-link:hover {
             text-decoration: underline;
             text-shadow: 0 0 8px rgba(37, 211, 102, 0.6);
         }
 
-   .queue-notice {
+  .queue-notice {
             background: rgba(139, 92, 246, 0.15);
             border: 1px solid var(--primary);
             border-radius: 12px;
@@ -174,10 +181,9 @@
             text-align: center;
             margin-top: 8px;
     }
-   .queue-notice b { color: var(--primary-glow); }
+  .queue-notice b { color: var(--primary-glow); }
 
-    /* === CSS LIMIT BARU === */
-   .limit-notice {
+  .limit-notice {
             background: rgba(255, 71, 87, 0.15);
             border: 1px solid var(--danger);
             border-radius: 12px;
@@ -185,24 +191,114 @@
             text-align: center;
             margin-top: 8px;
     }
-   .limit-notice b { color: var(--danger); }
+  .limit-notice b { color: var(--danger); }
+
+  .register-overlay {
+    position: absolute; top: 0; left: 0; right: 0; 
+    bottom: 85px; /* Sisain ruang buat input */
+    background: rgba(10, 10, 20, 0.95); backdrop-filter: blur(15px);
+    z-index: 50; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 20px; text-align: center;
+}
+  .register-box {
+            background: var(--card); border: 1px solid var(--glass-border);
+            border-radius: 16px; padding: 25px; max-width: 400px; width: 100%;
+    }
+  .register-box h2 {
+            background: linear-gradient(90deg, var(--primary), var(--primary-glow));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+    }
+  .register-box p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 15px; }
+  .register-status {
+            background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px;
+            font-size: 0.8rem; margin-top: 15px; text-align: left;
+    }
+  .register-status div { margin: 4px 0; }
+  .status-done { color: var(--whatsapp); }
+  .status-pending { color: var(--text-dim); }
+
+        /* === TAMBAHAN CSS BUAT TOMBOL IYA/TIDAK === */
+       .button-container { margin-top: 10px; display: flex; gap: 8px; }
+       .choice-btn {
+            background: rgba(123, 47, 247, 0.3); border: 1px solid var(--primary);
+            color: white; padding: 6px 14px; border-radius: 20px; cursor: pointer;
+            font-size: 0.85rem; transition: all 0.2s;
+        }
+       .choice-btn:hover { background: var(--primary); transform: scale(1.05); }
+
+        /* MAINTENANCE OVERLAY */
+        #maintenance-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 20, 0.7); backdrop-filter: blur(12px);
+            z-index: 9999; display: none; align-items: center; justify-content: center;
+            animation: fadeIn 0.5s ease;
+        }
+      .maintenance-box {
+            background: var(--card); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 40px 30px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            max-width: 400px; width: 90%;
+        }
+      .maintenance-box i {
+            font-size: 3rem; margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-glow));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: spin 3s linear infinite;
+        }
+      .maintenance-box h2 {
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-glow));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+      .maintenance-box p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; }
+      .loading-dots { display: flex; gap: 8px; justify-content: center; }
+      .loading-dots span {
+            width: 10px; height: 10px; background: var(--primary); border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+      .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+      .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes fadeIn { from { opacity: 0; } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         @media (max-width: 600px) {
             body { padding: 0; }
-       .chat-container { height: 100vh; height: 100dvh; border-radius: 0; border: none; }
-       .bubble { max-width: 90%; }
-       .input-area { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+      .chat-container { height: 100vh; height: 100dvh; border-radius: 0; border: none; }
+      .bubble { max-width: 90%; }
+      .input-area { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
             #input { padding: 12px 14px; }
-            #send-btn { width: 44px; height: 44px; }
-       .action-btns { grid-template-columns: 1fr; }
+            #send-btn, #upload-btn { width: 44px; height: 44px; }
+      .action-btns { grid-template-columns: 1fr; }
+      .user-badge { display: none; }
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
+        <div class="register-overlay" id="registerOverlay" style="display:none;">
+            <div class="register-box">
+                <h2>🔐 Daftar Dulu Boskuhh</h2>
+                <p>Sebelum pake HDKU Bot, isi data ini satu-satu, isinya wajib dijeda selama 8 detik, biar ga kena spam:</p>
+                <code>.nama Spasi NamaLu</code><br>
+                <code>.umur Spasi UmurLu</code><br>
+                <code>.gender Spasi Cowok/Cewek</code><br>
+                <code>.sandi Spasi PasswordLu</code>
+
+                <div class="register-status" id="registerStatus">
+                    <div id="statusNama" class="status-pending">❌ Nama: Belum diisi</div>
+                    <div id="statusUmur" class="status-pending">❌ Umur: Belum diisi</div>
+                    <div id="statusGender" class="status-pending">❌ Gender: Belum diisi</div>
+                    <div id="statusSandi" class="status-pending">❌ Sandi: Belum diisi</div>
+                </div>
+            </div>
+        </div>
+
         <div class="header">
+            <div class="user-badge" id="userBadge"></div>
             <h1>HDKU AI</h1>
-            <p>Ketik <code>.tt</code> TikTok | <code>.yt</code> YouTube</p>
+            <p>Ketik <code>.menu</code> untuk melihat semua fitur</p>
             <button class="clear-btn" onclick="clearChat()" title="Hapus Riwayat">
                 <i class="fa-solid fa-trash"></i>
             </button>
@@ -210,9 +306,23 @@
         <div id="chat-window"></div>
         <div class="input-area">
             <div class="input-wrapper">
-                <input type="text" id="input" placeholder="Ketik.tt /.yt /.ping..." autocomplete="off">
+                <button id="upload-btn" onclick="document.getElementById('file-input').click()"><i class="fa-solid fa-image"></i></button>
+                <input type="file" id="file-input" accept="image/*">
+                <input type="text" id="input" placeholder="Ketik.tt /.yt /.hd /.ping..." autocomplete="off">
             </div>
             <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- OVERLAY MAINTENANCE / BAN -->
+    <div id="maintenance-overlay">
+        <div class="maintenance-box">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h2>HDKU AI SEDANG DOWN</h2>
+            <p>HARAP TUNGGU BEBERAPA SAAT</p>
+            <div class="loading-dots">
+                <span></span><span></span>
+            </div>
         </div>
     </div>
 
@@ -220,18 +330,75 @@
         const chatWindow = document.getElementById('chat-window');
         const input = document.getElementById('input');
         const sendBtn = document.getElementById('send-btn');
+        const fileInput = document.getElementById('file-input');
         const CHAT_KEY = 'hdku_chat_history';
+        const USER_KEY = 'hdku_user_data';
 
-        // === VARIABLE ANTRIAN ===
         let isDownloading = false;
         let queueInterval = null;
 
-        // === VARIABLE LIMIT HARIAN BARU ===
         const LIMIT_KEY = 'hdku_daily_limit';
         const MAX_REQUESTS = 15;
-        const RESET_HOUR = 15; // Jam 15:00 / 3 sore
+        const RESET_HOUR = 15;
+
+        let userData = { nama: null, umur: null, gender: null, sandi: null };
+        let lastUploadedImage = null; // SIMPEN FOTO TERAKHIR
+
+        // === VARIABEL ANTI-SPAM & ANTI-BAN ===
+        let spamCount = 0;
+        let spamTimer = null;
+        let isBanned = false;
+        let banEndTime = 0;
+        const SPAM_LIMIT = 5; // 5x spam dalam 10 detik = ban
+        const SPAM_WINDOW = 10000; // 10 detik
+        const CHAT_BAN_DURATION = 300000; // 5 menit
+        const TIKWM_BAN_DURATION = 60000; // 60 detik
+
+        function checkRegister() {
+            const saved = localStorage.getItem(USER_KEY);
+            if (saved) {
+                userData = JSON.parse(saved);
+                if (userData.nama && userData.umur && userData.gender && userData.sandi) {
+                    document.getElementById('registerOverlay').style.display = 'none';
+                    document.getElementById('userBadge').textContent = `👋 ${userData.nama}`;
+                    return true;
+                }
+            }
+            document.getElementById('registerOverlay').style.display = 'flex';
+            updateRegisterStatus();
+            return false;
+        }
+
+        function updateRegisterStatus() {
+            document.getElementById('statusNama').innerHTML = userData.nama?
+                `✅ Nama: ${userData.nama}` : `❌ Nama: Belum diisi`;
+            document.getElementById('statusNama').className = userData.nama? 'status-done' : 'status-pending';
+
+            document.getElementById('statusUmur').innerHTML = userData.umur?
+                `✅ Umur: ${userData.umur}` : `❌ Umur: Belum diisi`;
+            document.getElementById('statusUmur').className = userData.umur? 'status-done' : 'status-pending';
+
+            document.getElementById('statusGender').innerHTML = userData.gender?
+                `✅ Gender: ${userData.gender}` : `❌ Gender: Belum diisi`;
+            document.getElementById('statusGender').className = userData.gender? 'status-done' : 'status-pending';
+
+            document.getElementById('statusSandi').innerHTML = userData.sandi?
+                `✅ Sandi: ••••••••` : `❌ Sandi: Belum diisi`;
+            document.getElementById('statusSandi').className = userData.sandi? 'status-done' : 'status-pending';
+        }
+
+        function saveUserData() {
+            localStorage.setItem(USER_KEY, JSON.stringify(userData));
+            if (userData.nama && userData.umur && userData.gender && userData.sandi) {
+                document.getElementById('registerOverlay').style.display = 'none';
+                document.getElementById('userBadge').textContent = `👋 ${userData.nama}`;
+                addBubble(`Selamat datang ${userData.nama}! Daftar berhasil. Silakan pake bot HDKU 🔥`, 'ai');
+                showWelcome();
+            }
+        }
 
         function loadChat() {
+            if (!checkRegister()) return;
             const saved = localStorage.getItem(CHAT_KEY);
             if (saved) {
                 chatWindow.innerHTML = saved;
@@ -246,17 +413,35 @@
         }
 
         function clearChat() {
-            if (confirm('Yakin mau hapus semua riwayat chat?')) {
+            if (confirm('Yakin mau hapus semua riwayat chat? Data login tetap aman')) {
                 localStorage.removeItem(CHAT_KEY);
                 chatWindow.innerHTML = '';
                 showWelcome();
             }
         }
 
-        function addBubble(text, type = 'user') {
+        // === UPDATE: addMessage SUPPORT TOMBOL ===
+        function addBubble(text, type = 'user', buttons = []) {
             const bubble = document.createElement('div');
             bubble.className = `bubble ${type}`;
             bubble.innerHTML = text;
+
+                        if (buttons.length > 0) {
+                const btnContainer = document.createElement('div');
+                btnContainer.className = 'button-container';
+                buttons.forEach(btnText => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = btnText;
+                    btn.onclick = () => {
+                        input.value = '.' + btnText.toLowerCase();
+                        handleMessage();
+                    };
+                    btnContainer.appendChild(btn);
+                });
+                bubble.appendChild(btnContainer);
+            }
+
             chatWindow.appendChild(bubble);
             chatWindow.scrollTop = chatWindow.scrollHeight;
             saveChat();
@@ -286,13 +471,10 @@
             return num.toString();
         }
 
-        // === FUNGSI LIMIT HARIAN BARU ===
         function getResetTime() {
             const now = new Date();
             const reset = new Date();
             reset.setHours(RESET_HOUR, 0, 0, 0);
-
-            // Kalo udah lewat jam 15:00 hari ini, resetnya besok jam 15:00
             if (now >= reset) {
                 reset.setDate(reset.getDate() + 1);
             }
@@ -302,8 +484,6 @@
         function checkDailyLimit() {
             const now = new Date();
             const data = JSON.parse(localStorage.getItem(LIMIT_KEY) || '{}');
-
-            // Cek apa udah waktunya reset
             if (!data.resetTime || now >= new Date(data.resetTime)) {
                 const newData = {
                     count: 0,
@@ -312,7 +492,6 @@
                 localStorage.setItem(LIMIT_KEY, JSON.stringify(newData));
                 return { allowed: true, remaining: MAX_REQUESTS, resetTime: newData.resetTime };
             }
-
             const remaining = MAX_REQUESTS - (data.count || 0);
             return {
                 allowed: remaining > 0,
@@ -340,15 +519,13 @@
             let serverPing = 0;
             let downloadSpeed = 0;
             let downloadStatus = 'Gagal';
-
             try {
                 const pingStart = Date.now();
                 await fetch('https://www.tikwm.com/api/?url=test', { method: 'HEAD', mode: 'no-cors' });
                 serverPing = Date.now() - pingStart;
             } catch (e) {
-                serverPing = Date.now() - startTime;
+ serverPing = Date.now() - startTime;
             }
-
             try {
                 const dlStart = Date.now();
                 const testUrl = 'https://speed.cloudflare.com/__down?bytes=1048576';
@@ -362,7 +539,6 @@
                 downloadSpeed = 0;
                 downloadStatus = 'Gagal';
             }
-
             return `
                 <div class="result-card">
                     <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-signal"></i> Hasil Test Ping</p>
@@ -378,9 +554,18 @@
             `;
         }
 
-        // === FUNGSI TIKTOK DIPISAH BIAR BISA DIANTRI + LIMIT ===
+        // === FUNGSI SHOW/HIDE BAN OVERLAY ===
+        function showBanOverlay(title, desc) {
+            document.querySelector('#maintenance-overlay h2').textContent = title;
+            document.querySelector('#maintenance-overlay p').textContent = desc;
+            document.getElementById('maintenance-overlay').style.display = 'flex';
+        }
+
+        function hideBanOverlay() {
+            document.getElementById('maintenance-overlay').style.display = 'none';
+        }
+
         async function processTikTok(url) {
-            // CEK LIMIT DULU SEBELUM PROSES
             const limit = checkDailyLimit();
             if (!limit.allowed) {
                 addBubble(`
@@ -392,18 +577,32 @@
                 `, 'ai');
                 return;
             }
-
             isDownloading = true;
             const loading = addLoading();
             try {
-                const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(url)}`);
+                const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(url)}&hd=1`);
                 const json = await res.json();
                 chatWindow.removeChild(loading);
 
-                if (json.code === 0) {
-                    incrementLimit(); // TAMBAH HITUNGAN KALO SUKSES
-                    const sisa = checkDailyLimit().remaining;
+                // DETEKSI BAN TIKWM
+                if (json.code === -1 && json.msg && json.msg.includes('frequent')) {
+                    isBanned = true;
+                    banEndTime = Date.now() + TIKWM_BAN_DURATION;
+                    showBanOverlay('SRRVER LAGI DOWN', 'TUNGGU 60 DETIK BOSS');
+                    addBubble(`🚫 SERVER down 60 detik. Sabar ya bosku`, 'ai');
 
+                    // AUTO UNBAN SETELAH 60 DETIK
+                    setTimeout(() => {
+                        isBanned = false;
+                        hideBanOverlay();
+                        addBubble(`✅ Server udah kelar. Bisa download lagi boskuh`, 'ai');
+                    }, TIKWM_BAN_DURATION);
+                    return;
+                }
+
+                if (json.code === 0) {
+                    incrementLimit();
+                    const sisa = checkDailyLimit().remaining;
                     const d = json.data;
                     let resultHTML = `
                         <div class="result-card">
@@ -417,10 +616,8 @@
                                     <div style="font-size:12px;opacity:0.7">@${d.author?.unique_id || 'unknown'}</div>
                                 </div>
                             </div>
-
                             <img src="${d.cover}" class="video-preview">
                             <div class="desc-box" id="desc-${d.id}">${d.title || 'Tidak ada deskripsi.'}</div>
-
                             <div class="tt-stats">
                                 <div>
                                     <i class="fa-solid fa-heart"></i>
@@ -438,35 +635,34 @@
                                     <span>Share</span>
                                 </div>
                             </div>
-
                             <div class="action-btns">
                                 <button class="btn-small btn-copy" onclick="copyText('desc-${d.id}', this)">
                                     <i class="fa-solid fa-copy"></i> Salin Desk
                                 </button>
                     `;
-if (d.images && d.images.length > 0) {
+                    if (d.images && d.images.length > 0) {
                         resultHTML += `
                                 <button class="btn-small btn-dl" onclick="downloadAllPhotos(${JSON.stringify(d.images).replace(/"/g, '&quot;')}, '${d.id}', this)">
-                                    <i class="fa-solid fa-images"></i> Download Semua
+                                    <i class="fa-solid fa-images"></i> Download HD Semua
                                 </button>
                             </div>
-                            <p style="font-size:0.75rem; margin-bottom:6px; color:var(--text-dim);">Konten Foto (${d.images.length})</p>
+                            <p style="font-size:0.75rem; margin-bottom:6px; color:var(--text-dim);">Konten Foto HD (${d.images.length}) - Gratis</p>
                         `;
                         d.images.forEach((imgUrl, index) => {
                             resultHTML += `
                                 <div class="photo-item">
                                     <img src="${imgUrl}" class="photo-thumb">
-                                    <span style="font-size:0.8rem; flex:1;">Foto ${index + 1}</span>
-                                    <button class="btn-small btn-dl" style="padding: 6px 12px; width:auto;" onclick="autoDownload('${imgUrl}', 'HDKU-Photo-${index + 1}.jpg', this)">
-                                        <i class="fa-solid fa-download"></i>
+                                    <span style="font-size:0.8rem; flex:1;">Foto HD ${index + 1}</span>
+                                    <button class="btn-small btn-dl" style="padding: 6px 12px; width:auto;" onclick="autoDownload('${imgUrl}', 'HDKU-HD-Photo-${index + 1}.jpg', this)">
+                                        <i class="fa-solid fa-download"></i> HD
                                     </button>
                                 </div>
                             `;
                         });
                     } else {
                         resultHTML += `
-                                <button class="btn-small btn-dl" onclick="autoDownload('${d.play}', 'HDKU-${d.id}.mp4', this)">
-                                    <i class="fa-solid fa-download"></i> Download MP4
+                                <button class="btn-small btn-dl" onclick="autoDownload('${d.hdplay || d.play}', 'HDKU-HD-${d.id}.mp4', this)">
+                                    <i class="fa-solid fa-download"></i> Download HD MP4
                                 </button>
                             </div>
                         `;
@@ -483,16 +679,64 @@ if (d.images && d.images.length > 0) {
                     resultHTML += `</div>`;
                     addBubble(resultHTML, 'ai');
                 } else {
-                    addBubble('Konten TikTok tidak ditemukan. Cek linknya lagi my lord', 'ai');
+                    addBubble('Konten TikTok tidak ditemukan. Cek linknya lagi', 'ai');
                 }
             } catch (e) {
                 chatWindow.removeChild(loading);
                 addBubble('Gagal ambil data TikTok. Server lagi error atau link invalid', 'ai');
             } finally {
-                // Kasih jeda 3 detik setelah selesai, baru buka kunci antrian
                 setTimeout(() => {
                     isDownloading = false;
                 }, 3000);
+            }
+        }
+
+        // === FUNGSI HD FOTO BARU ===
+        async function enhanceToHD() {
+            if (!lastUploadedImage) {
+                addBubble('Kirim foto dulu boss, baru ketik.hd', 'ai');
+                return;
+            }
+            const loading = addLoading();
+            try {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const scale = 2;
+                    canvas.width = img.width * scale;
+                    canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d');
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                    canvas.toBlob((blob) => {
+                        chatWindow.removeChild(loading);
+                        const url = URL.createObjectURL(blob);
+                        const resultHTML = `
+                            <div class="result-card">
+                                <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-wand-magic-sparkles"></i> Foto HD Berhasil</p>
+                                <img src="${url}" class="image-preview">
+                                <div class="action-btns">
+                                    <button class="btn-small btn-dl" style="grid-column: span 2;" onclick="autoDownload('${url}', 'HDKU-HD-${Date.now()}.png', this)">
+                                        <i class="fa-solid fa-download"></i> Download HD 2x
+                                    </button>
+                                </div>
+                                <p style="font-size:0.75rem;opacity:0.7;text-align:center;">Resolusi: ${canvas.width}x${canvas.height}</p>
+                            </div>
+                        `;
+                        addBubble(resultHTML, 'ai');
+                    }, 'image/png');
+                };
+                img.onerror = () => {
+                    chatWindow.removeChild(loading);
+                    addBubble('Gagal proses foto bg. Coba foto lain', 'ai');
+                };
+                img.src = lastUploadedImage;
+            } catch (e) {
+                chatWindow.removeChild(loading);
+                addBubble('Error HD-in foto bg', 'ai');
             }
         }
 
@@ -500,31 +744,174 @@ if (d.images && d.images.length > 0) {
             const msg = input.value.trim();
             if (!msg) return;
 
+            // CEK APAKAH LAGI KENA BAN
+            if (isBanned) {
+                const now = Date.now();
+                if (now < banEndTime) {
+                    const sisaDetik = Math.ceil((banEndTime - now) / 1000);
+                    addBubble(`🚫 Kamu di-ban sementara. Tunggu ${sisaDetik} detik lagi`, 'ai');
+                    input.value = '';
+                    return;
+                } else {
+                    // BAN HABIS
+                    isBanned = false;
+                    spamCount = 0;
+                    hideBanOverlay();
+                }
+            }
+
+            // DETEKSI SPAM CHAT
+            spamCount++;
+            if (spamTimer) clearTimeout(spamTimer);
+            spamTimer = setTimeout(() => { spamCount = 0; }, SPAM_WINDOW);
+
+            if (spamCount >= SPAM_LIMIT) {
+                isBanned = true;
+                banEndTime = Date.now() + CHAT_BAN_DURATION;
+                showBanOverlay('KAMU DI-BAN 5 MENIT', 'JANGAN SPAM CHAT YA KON😭');
+                addBubble(`🚫 Kena ban 5 menit karena spam chat ${nama}`, 'ai');
+                input.value = '';
+
+                // AUTO UNBAN SETELAH 5 MENIT
+                setTimeout(() => {
+                    isBanned = false;
+                    hideBanOverlay();
+                    addBubble(`✅ Ban udah kelar. Jangan spam lagi ya ${nama}`, 'ai');
+                }, CHAT_BAN_DURATION);
+                return;
+            }
+
             addBubble(msg, 'user');
             input.value = '';
 
-            // TIKTOK - DENGAN ANTRIAN + LIMIT
-            if (msg.startsWith('.tt ')) {
+            if (msg.startsWith('.nama ')) {
+                userData.nama = msg.substring(6).trim();
+                saveUserData();
+                updateRegisterStatus();
+                addBubble(`Nama diset: ${userData.nama}`, 'ai');
+                return;
+            }
+            if (msg.startsWith('.umur ')) {
+                userData.umur = msg.substring(6).trim();
+                saveUserData();
+                updateRegisterStatus();
+                addBubble(`Umur diset: ${userData.umur}`, 'ai');
+                return;
+            }
+            if (msg.startsWith('.gender ')) {
+                userData.gender = msg.substring(8).trim();
+                saveUserData();
+                updateRegisterStatus();
+                addBubble(`Gender diset: ${userData.gender}`, 'ai');
+                return;
+            }
+            if (msg.startsWith('.sandi ')) {
+                userData.sandi = msg.substring(7).trim();
+                saveUserData();
+                updateRegisterStatus();
+                addBubble(`Sandi disimpan aman, ketik .menu untuk melihat semua fitur`, 'ai');
+                return;
+            }
+
+            if (!userData.nama ||!userData.umur ||!userData.gender ||!userData.sandi) {
+                addBubble('⚠️ Daftar dulu yaa! Ketik.nama,.umur,.gender,.sandi satu-satu', 'ai');
+                return;
+            }
+
+            // === FITUR BARU:.MENU ===
+            if (msg === '.menu') {
+                addBubble(`<pre style="font-family: monospace; white-space: pre; margin: 0; font-size: 0.8rem; line-height: 1.3;">╭━━━『 *MENU HDKU AI* 』━━━╮
+│
+├ *Downloader*
+│ •.tt [link] - Download TikTok
+│ •.yt [link] - Download YouTube
+│
+├ *Tools*
+│ •.hd - HD-in foto 2x [kirim foto]
+│ •.ping - Cek sinyal server
+│
+├ *Akun*
+│ •.logout - Keluar dari akun
+│ •.owner - Lapor bug ke owner
+│
+╰━━━『 *HDKU AI B5* 』━━━╯</pre>`, 'ai');
+                return;
+            }
+
+            // === FITUR BARU:.LOGOUT ===
+            if (msg === '.logout') {
+                localStorage.removeItem(USER_KEY);
+                userData = { nama: null, umur: null, gender: null, sandi: null };
+                chatWindow.innerHTML = '';
+                document.getElementById('userBadge').textContent = '';
+                document.getElementById('registerOverlay').style.display = 'flex';
+                updateRegisterStatus();
+                addBubble('✅ Berhasil logout. Silakan daftar ulang.', 'ai');
+                return;
+            }
+            // --- FITUR OWNER INTERAKTIF (FIXED - CARD VERSION) ---
+            if (msg === '.owner') {
+                const textAwal = `*Laporkan Bug*\n\nApakah kamu mau melaporkan bug ke owner?`;
+                const bubble = addBubble(textAwal, 'ai', ['Iya', 'Tidak']);
+                
+                const buttons = bubble.querySelectorAll('.choice-btn');
+                
+                buttons.forEach(btn => {
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        if (btn.textContent === 'Iya') {
+                            // KITA MASUKKAN LAGI HTML KARTUNYA DI SINI
+                            bubble.innerHTML = `
+                                <div class="result-card" style="border: 1px solid var(--whatsapp);">
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                        <i class="fa-brands fa-whatsapp" style="color: var(--whatsapp); font-size: 1.2rem;"></i>
+                                        <b style="font-size: 0.9rem;">Hubungi Owner</b>
+                                    </div>
+                                    <a href="https://wa.me/6285727658632" target="_blank" style="text-decoration: none;">
+                                        <button class="btn-small btn-dl" style="width: 100%; padding: 12px; font-size: 0.9rem;">
+                                            <i class="fa-brands fa-whatsapp"></i> Hubungi Owner
+                                        </button>
+                                    </a>
+                                    <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 10px; line-height: 1.4;">
+                                        Sertakan screenshot bug biar cepat diperbaiki.
+                                    </p>
+                                </div>
+                            `;
+                        } else {
+                            bubble.innerHTML = `Oke siap. Kalau ada kendala lagi jangan ragu buat hubungi ya! 🙏`;
+                        }
+
+                        chatWindow.scrollTop = chatWindow.scrollHeight;
+                        saveChat(); // Simpan biar pas refresh tampilannya tetep kartu
+                    };
+                });
+                return;
+            }
+
+
+            if (msg === '.hd') {
+                enhanceToHD();
+                return;
+            }
+                        if (msg.startsWith('.tt ')) {
                 const url = msg.substring(4).trim();
                 if (!url) {
-                    addBubble('Link-nya mana my lord? Format: <code>.tt https://tiktok.com/xxx</code>', 'ai');
+                    addBubble('Link-nya mana ${nama}? Format: <code>.tt https://tiktok.com/xxx</code>', 'ai');
                     return;
                 }
-
-                // CEK LIMIT DULU SEBELUM ANTRIAN
                 const limit = checkDailyLimit();
                 if (!limit.allowed) {
                     addBubble(`
                         <div class="limit-notice">
-                            🚫 <b>Limit Harian Habis My Lord</b><br>
+                            🚫 <b>Limit Harian Habis boskuh</b><br>
                             Udah 15 request hari ini<br>
                             <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
                         </div>
                     `, 'ai');
                     return;
                 }
-
-                // CEK ANTRIAN
                 if (isDownloading) {
                     let timeLeft = 30;
                     const queueBubble = addBubble(`
@@ -534,34 +921,27 @@ if (d.images && d.images.length > 0) {
                             <small style="opacity:0.7">Biar server tikwm aman dari limit</small>
                         </div>
                     `, 'ai');
-
                     queueInterval = setInterval(() => {
                         timeLeft--;
                         const timerEl = queueBubble.querySelector('#queueTimer');
                         if (timerEl) timerEl.textContent = timeLeft;
-
                         if (timeLeft <= 0) {
                             clearInterval(queueInterval);
                             chatWindow.removeChild(queueBubble);
                             saveChat();
-                            processTikTok(url); // LANJUT SETELAH ANTRIAN
+                            processTikTok(url);
                         }
                     }, 1000);
-
                     return;
                 }
-
-                // KALO GAK ANTRI, LANGSUNG GAS
                 processTikTok(url);
 
-            // YOUTUBE - GAK KENA LIMIT
             } else if (msg.startsWith('.yt ')) {
                 const url = msg.substring(4).trim();
                 if (!url) {
-                    addBubble('Link YouTube-nya mana my lord? Format: <code>.yt https://youtube.com/watch?v=xxx</code>', 'ai');
+                    addBubble('Link YouTube-nya mana ${nama}? Format: <code>.yt https://youtube.com/watch?v=xxx</code>', 'ai');
                     return;
                 }
-
                 const loading = addLoading();
                 try {
                     const res = await fetch('https://co.wuk.sh/api/json', {
@@ -571,13 +951,11 @@ if (d.images && d.images.length > 0) {
                     });
                     const json = await res.json();
                     chatWindow.removeChild(loading);
-
                     if (json.status === 'success' || json.status === 'redirect' || json.status === 'stream') {
                         const thumb = json.thumb || '';
                         const title = json.title || 'Video YouTube';
                         const author = json.author || 'Unknown';
                         const duration = json.duration? formatDuration(json.duration) : '';
-
                         let resultHTML = `
                             <div class="result-card">
                                 <img src="${thumb}" class="video-preview">
@@ -587,7 +965,6 @@ if (d.images && d.images.length > 0) {
                                     ${duration? `<span><i class="fa-solid fa-clock"></i> ${duration}</span>` : ''}
                                 </div>
                         `;
-
                         if (json.picker && json.picker.length > 0) {
                             resultHTML += `<p style="font-size:0.75rem; margin-bottom:6px; color:var(--text-dim);">Pilih Kualitas:</p><div class="quality-btns">`;
                             json.picker.forEach(item => {
@@ -609,7 +986,6 @@ if (d.images && d.images.length > 0) {
                                 </div>
                             `;
                         }
-
                         if (json.audio) {
                             resultHTML += `
                                 <div class="action-btns">
@@ -619,7 +995,6 @@ if (d.images && d.images.length > 0) {
                                 </div>
                             `;
                         }
-
                         resultHTML += `</div>`;
                         addBubble(resultHTML, 'ai');
                     } else {
@@ -627,10 +1002,9 @@ if (d.images && d.images.length > 0) {
                     }
                 } catch (e) {
                     chatWindow.removeChild(loading);
-                    addBubble('Gagal ambil data YouTube. Coba link lain atau server lagi error', 'ai');
+                    addBubble('Gagal ambil data, server lagi error ( untuk sementara fitur YouTube tidak berfungsi ), ketik .menu untuk lihat semua fitur', 'ai');
                 }
 
-            // PING - GAK KENA LIMIT
             } else if (msg === '.ping') {
                 const loading = addLoading();
                 pingTest().then(result => {
@@ -639,7 +1013,7 @@ if (d.images && d.images.length > 0) {
                 });
 
             } else {
-                addBubble('Ketik <code>.tt link_tiktok</code> / <code>.yt link_youtube</code> / <code>.ping</code> buat cek sinyal my lord', 'ai');
+                addBubble('Ketik <code>.menu</code> buat liat semua fitur', 'ai');
             }
         }
 
@@ -723,16 +1097,82 @@ if (d.images && d.images.length > 0) {
             });
         }
 
+        // === UPLOAD FOTO HANDLER BARU ===
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                addBubble('File harus gambar boss📸', 'ai');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                lastUploadedImage = event.target.result;
+                const previewHTML = `
+                    <div class="result-card">
+                        <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-image"></i> Foto Siap di-HD-in</p>
+                        <img src="${lastUploadedImage}" class="image-preview">
+                        <p style="font-size:0.8rem;opacity:0.7;text-align:center;">Ketik <code>.hd</code> buat upscale 2x</p>
+                    </div>
+                `;
+                addBubble(previewHTML, 'ai');
+            };
+            reader.readAsDataURL(file);
+        });
+
         sendBtn.onclick = handleMessage;
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') handleMessage();
         });
 
         function showWelcome() {
-            addBubble(`Selamat datang di HDKU Ai v5.6, HDKU Ai adalah ai downloader yang dikembangkan oleh PitNewbie.<br><br><b>Info Lengkap:</b><br>: <a href="https://whatsapp.com/channel/0029Vb6678635fLqu0pxqx2K" class="wa-link" target="_blank">Klik di sini</a>`, "ai");
+            addBubble(`Selamat datang di HDKU Ai v6.1, HDKU Ai adalah ai downloader buatan yang dikembangkan oleh PitNewbie.<br><br><b>Info Lengkap:</b><br>: <a href="https://whatsapp.com/channel/0029Vb6678635fLqu0pxqx2K" class="wa-link" target="_blank">Klik di sini</a>`, "ai");
         }
 
         loadChat();
+// --- FITUR IKLAN TANPA EXTERNAL FILE (LANGSUNG DI HTML) ---
+async function tampilkanIklanOtomatis() {
+    // 1. GANTI LINK TIKTOK IKLANMU DI SINI
+    const linkIklan = "https://vt.tiktok.com/ZS9KpMMEN/"; 
+    
+    // ID Iklan (Ganti v1 jadi v2 dst kalau kamu ganti link, biar muncul lagi di user)
+    const idIklan = "iklan_v1";
+
+    // Cek apakah user sudah lihat iklan ini di sesi sekarang
+    if (sessionStorage.getItem(idIklan)) return;
+
+    try {
+        // Ambil data preview pakai API tikwm (biar tampilannya mewah ada gambarnya)
+        const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(linkIklan)}`);
+        const json = await res.json();
+        
+        if (json.code === 0) {
+            const d = json.data;
+            const adHTML = `
+                <div class="result-card" style="border: 1px solid gold; background: rgba(255, 215, 0, 0.05); animation: slideUp 0.5s ease;">
+                    <p style="color: gold; font-weight: bold; font-size: 0.75rem; margin-bottom: 8px;">
+                        <i class="fa-solid fa-star"></i> REKOMENDASI OWNER
+                    </p>
+                    <img src="${d.cover}" class="video-preview" style="border-radius: 10px; height: 180px; width: 100%; object-fit: cover;">
+                    <div style="font-size: 0.85rem; margin: 8px 0; color: #fff; font-weight: 500;">${d.title}</div>
+                    <a href="${linkIklan}" target="_blank" style="text-decoration: none;">
+                        <button class="btn-small" style="background: linear-gradient(90deg, #7b2ff7, #f107a3); width: 100%; border: none; padding: 12px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fa-brands fa-tiktok"></i> Tonton VT Sekarang
+                        </button>
+                    </a>
+                </div>
+            `;
+            addBubble(adHTML, 'ai');
+            sessionStorage.setItem(idIklan, 'true'); // Tandai sudah muncul
+        }
+    } catch (e) {
+        console.log("Gagal menampilkan iklan");
+    }
+}
+
+// Jalankan iklan setelah user standby 1 menit (60000ms)
+setTimeout(tampilkanIklanOtomatis, 60000);
+
     </script>
 </body>
 </html>
