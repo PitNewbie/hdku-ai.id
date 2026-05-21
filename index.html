@@ -11,6 +11,7 @@
             --bg: #0a0a14; --card: rgba(20, 20, 35, 0.8); --primary: #7b2ff7;
             --primary-glow: #f107a3; --whatsapp: #25D366; --youtube: #FF0000; --danger: #ff4757; --text: #f5f5f5;
             --text-dim: #9a9aa8; --glass-border: rgba(255, 255, 255, 0.08);
+            --gold: #ffd700;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; height: 100dvh; }
@@ -21,7 +22,7 @@
                               radial-gradient(circle at 85% 75%, rgba(241, 7, 163, 0.15) 0%, transparent 50%);
             overflow: hidden;
         }
-  .chat-container {
+        .chat-container {
             width: 100%; max-width: 750px; height: 100vh; height: 100dvh;
             background: var(--card); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 20px;
@@ -29,28 +30,28 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             overflow: hidden; position: relative;
         }
-  .header {
+        .header {
             padding: 14px 20px; text-align: center; border-bottom: 1px solid var(--glass-border);
             background: rgba(0,0,0,0.2); position: relative; flex-shrink: 0;
         }
-  .header h1 {
+        .header h1 {
             font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px;
             background: linear-gradient(90deg, var(--primary), var(--primary-glow));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-  .header p { color: var(--text-dim); font-size: 0.8rem; margin-top: 4px; }
-  .user-badge {
+        .header p { color: var(--text-dim); font-size: 0.8rem; margin-top: 4px; }
+        .user-badge {
             position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
             font-size: 0.75rem; color: var(--primary-glow); font-weight: 600;
             max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
-  .clear-btn {
+        .clear-btn {
             position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
             background: rgba(255, 71, 87, 0.2); border: 1px solid var(--danger);
             color: var(--danger); width: 36px; height: 36px; border-radius: 10px;
             cursor: pointer; display: grid; place-items: center; transition: 0.2s;
         }
-  .clear-btn:hover { background: var(--danger); color: white; }
+        .clear-btn:hover { background: var(--danger); color: white; }
 
         #chat-window {
             flex: 1 1 auto; padding: 20px; padding-bottom: 10px;
@@ -61,38 +62,38 @@
         #chat-window::-webkit-scrollbar { width: 6px; }
         #chat-window::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
 
-  .bubble {
+        .bubble {
             max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 0.9rem;
             line-height: 1.5; animation: slideUp 0.25s ease; word-wrap: break-word;
         }
-  .user {
+        .user {
             align-self: flex-end; background: linear-gradient(135deg, var(--primary), var(--primary-glow));
             color: #fff; font-weight: 500; border-bottom-right-radius: 4px;
             box-shadow: 0 4px 15px rgba(123, 47, 247, 0.3);
         }
-  .ai {
+        .ai {
             align-self: flex-start; background: rgba(255,255,255,0.04);
             border: 1px solid var(--glass-border); border-bottom-left-radius: 4px;
         }
-  .ai.loading { display: flex; gap: 5px; padding: 14px 18px; }
-  .ai.loading span {
+        .ai.loading { display: flex; gap: 5px; padding: 14px 18px; }
+        .ai.loading span {
             width: 6px; height: 6px; background: var(--primary); border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out both;
         }
-  .ai.loading span:nth-child(1) { animation-delay: -0.32s; }
-  .ai.loading span:nth-child(2) { animation-delay: -0.16s; }
+        .ai.loading span:nth-child(1) { animation-delay: -0.32s; }
+        .ai.loading span:nth-child(2) { animation-delay: -0.16s; }
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } }
         @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-  .input-area {
+        .input-area {
             padding: 16px 20px; border-top: 1px solid var(--glass-border);
             display: flex; gap: 10px; background: rgba(0,0,0,0.3);
-            flex-shrink: 0; position: relative; z-index: 10;
+            flex-shrink: 0; position: relative; z-index: 10; align-items: center;
         }
-  .input-wrapper { flex: 1; display: flex; justify-content: center; gap: 8px; }
+        .input-wrapper { flex: 1; display: flex; gap: 8px; align-items: center; }
         #input {
-            flex: 1; max-width: 600px; padding: 14px 18px; background: rgba(0, 0, 0, 0.4);
+            flex: 1; padding: 14px 18px; background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--glass-border); border-radius: 14px; color: var(--text);
             font-size: 0.9rem; outline: none; transition: 0.3s;
         }
@@ -109,169 +110,164 @@
         #upload-btn { background: #444; }
         #file-input { display: none; }
 
-  .result-card {
+        .result-card {
             background: rgba(0,0,0,0.3); border-radius: 12px; padding: 14px;
             border: 1px solid var(--glass-border); margin-top: 8px;
         }
-  .video-preview, .image-preview {
+        .video-preview, .image-preview {
             width: 100%; max-height: 300px; object-fit: cover;
             border-radius: 10px; margin-bottom: 10px;
         }
-  .user-info {
+        .user-info {
             display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
         }
-  .user-info img {
+        .user-info img {
             width: 40px; height: 40px; border-radius: 50%;
             border: 2px solid var(--primary);
         }
-  .tt-stats {
+        .tt-stats {
             display: flex; justify-content: space-around; text-align: center;
             font-size: 12px; margin: 15px 0; padding: 10px 0;
             border-top: 1px solid #444; border-bottom: 1px solid #444;
         }
-  .tt-stats i { font-size: 16px; margin-bottom: 4px; color: #fe2c55; }
-  .desc-box {
+        .tt-stats i { font-size: 16px; margin-bottom: 4px; color: #fe2c55; }
+        .desc-box {
             background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px;
             font-size: 0.8rem; max-height: 80px; overflow-y: auto; white-space: pre-wrap;
             border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px;
         }
-  .video-info {
+        .video-info {
             display: flex; justify-content: space-between; font-size: 0.75rem;
             color: var(--text-dim); margin-bottom: 10px; padding: 0 4px;
         }
-  .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-  .quality-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 10px; }
-  .btn-small {
+        .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+        .quality-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 10px; }
+        .btn-small {
             padding: 10px; border-radius: 8px; border: none; font-weight: 600;
             cursor: pointer; color: white; display: flex; align-items: center;
             justify-content: center; gap: 6px; font-size: 0.85rem; transition: 0.2s;
         }
-  .btn-copy { background: #333; }
-  .btn-copy:hover { background: #444; }
-  .btn-dl { background: var(--whatsapp); }
-  .btn-dl-yt { background: var(--youtube); }
-  .btn-dl:hover,.btn-dl-yt:hover { opacity: 0.9; transform: translateY(-1px); }
-  .btn-dl:disabled,.btn-dl-yt:disabled { opacity: 0.6; cursor: not-allowed; }
-  .btn-quality { background: #444; font-size: 0.8rem; padding: 8px; }
-  .btn-quality:hover { background: var(--primary); }
+        .btn-copy { background: #333; }
+        .btn-copy:hover { background: #444; }
+        .btn-dl { background: var(--whatsapp); }
+        .btn-dl-yt { background: var(--youtube); }
+        .btn-dl:hover,.btn-dl-yt:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-dl:disabled,.btn-dl-yt:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-quality { background: #444; font-size: 0.8rem; padding: 8px; }
+        .btn-quality:hover { background: var(--primary); }
 
-  .photo-item {
+        .photo-item {
             display: flex; align-items: center; gap: 10px; margin-top: 8px;
             background: rgba(255,255,255,0.03); padding: 8px; border-radius: 8px;
         }
-  .photo-thumb { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
+        .photo-thumb { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
 
         code { background: rgba(123,47,247,0.2); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
-  .wa-link {
+        .wa-link {
             color: var(--whatsapp);
             text-decoration: none;
             font-weight: 600;
             transition: 0.2s;
         }
-  .wa-link:hover {
+        .wa-link:hover {
             text-decoration: underline;
             text-shadow: 0 0 8px rgba(37, 211, 102, 0.6);
         }
 
-  .queue-notice {
+        .queue-notice {
             background: rgba(139, 92, 246, 0.15);
             border: 1px solid var(--primary);
             border-radius: 12px;
             padding: 14px;
             text-align: center;
             margin-top: 8px;
-    }
-  .queue-notice b { color: var(--primary-glow); }
+        }
+        .queue-notice b { color: var(--primary-glow); }
 
-  .limit-notice {
+        .limit-notice {
             background: rgba(255, 71, 87, 0.15);
             border: 1px solid var(--danger);
             border-radius: 12px;
             padding: 14px;
             text-align: center;
             margin-top: 8px;
-    }
-  .limit-notice b { color: var(--danger); }
+        }
+        .limit-notice b { color: var(--danger); }
 
-  .register-overlay {
-    position: absolute; top: 0; left: 0; right: 0; 
-    bottom: 85px; /* Sisain ruang buat input */
-    background: rgba(10, 10, 20, 0.95); backdrop-filter: blur(15px);
-    z-index: 50; display: flex; align-items: center; justify-content: center;
-    flex-direction: column; padding: 20px; text-align: center;
-}
-  .register-box {
+        .register-overlay {
+            position: absolute; top: 0; left: 0; right: 0; 
+            bottom: 85px;
+            background: rgba(10, 10, 20, 0.95); backdrop-filter: blur(15px);
+            z-index: 50; display: flex; align-items: center; justify-content: center;
+            flex-direction: column; padding: 20px; text-align: center;
+        }
+        .register-box {
             background: var(--card); border: 1px solid var(--glass-border);
             border-radius: 16px; padding: 25px; max-width: 400px; width: 100%;
-    }
-  .register-box h2 {
+        }
+        .register-box h2 {
             background: linear-gradient(90deg, var(--primary), var(--primary-glow));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-    }
-  .register-box p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 15px; }
-  .register-status {
+        }
+        .register-box p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 15px; }
+        .register-status {
             background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px;
             font-size: 0.8rem; margin-top: 15px; text-align: left;
-    }
-  .register-status div { margin: 4px 0; }
-  .status-done { color: var(--whatsapp); }
-  .status-pending { color: var(--text-dim); }
+        }
+        .register-status div { margin: 4px 0; }
+        .status-done { color: var(--whatsapp); }
+        .status-pending { color: var(--text-dim); }
 
-        /* === TAMBAHAN CSS BUAT TOMBOL IYA/TIDAK === */
-       .button-container { margin-top: 10px; display: flex; gap: 8px; }
-       .choice-btn {
+        .button-container { margin-top: 10px; display: flex; gap: 8px; }
+        .choice-btn {
             background: rgba(123, 47, 247, 0.3); border: 1px solid var(--primary);
             color: white; padding: 6px 14px; border-radius: 20px; cursor: pointer;
             font-size: 0.85rem; transition: all 0.2s;
         }
-       .choice-btn:hover { background: var(--primary); transform: scale(1.05); }
+        .choice-btn:hover { background: var(--primary); transform: scale(1.05); }
 
-        /* MAINTENANCE OVERLAY */
         #maintenance-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 20, 0.7); backdrop-filter: blur(12px);
             z-index: 9999; display: none; align-items: center; justify-content: center;
             animation: fadeIn 0.5s ease;
         }
-      .maintenance-box {
+        .maintenance-box {
             background: var(--card); border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 40px 30px; text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
             max-width: 400px; width: 90%;
         }
-      .maintenance-box i {
+        .maintenance-box i {
             font-size: 3rem; margin-bottom: 20px;
             background: linear-gradient(90deg, var(--primary), var(--primary-glow));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: spin 3s linear infinite;
         }
-      .maintenance-box h2 {
+        .maintenance-box h2 {
             font-size: 1.5rem; font-weight: 700; margin-bottom: 10px;
             background: linear-gradient(90deg, var(--primary), var(--primary-glow));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-      .maintenance-box p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; }
-      .loading-dots { display: flex; gap: 8px; justify-content: center; }
-      .loading-dots span {
+        .maintenance-box p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; }
+        .loading-dots { display: flex; gap: 8px; justify-content: center; }
+        .loading-dots span {
             width: 10px; height: 10px; background: var(--primary); border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out both;
         }
-      .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
-      .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes fadeIn { from { opacity: 0; } }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
 
         @media (max-width: 600px) {
             body { padding: 0; }
-      .chat-container { height: 100vh; height: 100dvh; border-radius: 0; border: none; }
-      .bubble { max-width: 90%; }
-      .input-area { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+            .chat-container { height: 100vh; height: 100dvh; border-radius: 0; border: none; }
+            .bubble { max-width: 90%; }
+            .input-area { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
             #input { padding: 12px 14px; }
             #send-btn, #upload-btn { width: 44px; height: 44px; }
-      .action-btns { grid-template-columns: 1fr; }
-      .user-badge { display: none; }
+            .action-btns { grid-template-columns: 1fr; }
+            .user-badge { display: none; }
         }
     </style>
 </head>
@@ -303,18 +299,19 @@
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
+        
         <div id="chat-window"></div>
+        
         <div class="input-area">
             <div class="input-wrapper">
                 <button id="upload-btn" onclick="document.getElementById('file-input').click()"><i class="fa-solid fa-image"></i></button>
                 <input type="file" id="file-input" accept="image/*">
-                <input type="text" id="input" placeholder="Ketik.tt /.yt /.hd /.ping..." autocomplete="off">
+                <input type="text" id="input" placeholder="Ketik .me / .cekprem / .menu..." autocomplete="off">
             </div>
             <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <!-- OVERLAY MAINTENANCE / BAN -->
     <div id="maintenance-overlay">
         <div class="maintenance-box">
             <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -333,34 +330,57 @@
         const fileInput = document.getElementById('file-input');
         const CHAT_KEY = 'hdku_chat_history';
         const USER_KEY = 'hdku_user_data';
+        const REDEEMED_KEY = 'hdku_used_codes';
+        const BONUS_LIMIT_KEY = 'hdku_bonus_limit';
 
         let isDownloading = false;
         let queueInterval = null;
 
         const LIMIT_KEY = 'hdku_daily_limit';
-        const MAX_REQUESTS = 15;
         const RESET_HOUR = 15;
 
-        let userData = { nama: null, umur: null, gender: null, sandi: null };
-        let lastUploadedImage = null; // SIMPEN FOTO TERAKHIR
+        let userData = { nama: null, umur: null, gender: null, sandi: null, status: 'Reguler', expiredTime: null };
+        let lastUploadedImage = null; 
 
-        // === VARIABEL ANTI-SPAM & ANTI-BAN ===
         let spamCount = 0;
         let spamTimer = null;
         let isBanned = false;
         let banEndTime = 0;
-        const SPAM_LIMIT = 5; // 5x spam dalam 10 detik = ban
-        const SPAM_WINDOW = 10000; // 10 detik
-        const CHAT_BAN_DURATION = 300000; // 5 menit
-        const TIKWM_BAN_DURATION = 60000; // 60 detik
+        const SPAM_LIMIT = 5; 
+        const SPAM_WINDOW = 10000; 
+        const CHAT_BAN_DURATION = 300000; 
+        const TIKWM_BAN_DURATION = 60000; 
+
+        const PREMIUM_CODES = {
+            "HDKUCODE12007G288": { label: "Premium 1 Bulan", days: 30 },
+            "HDKUCODE14267LGJEY": { label: "Premium 1 Minggu", days: 7 },
+            "HDKUCODE819186GSNALG": { label: "Premium 1 Hari", days: 1 }
+        };
+
+        const LIMIT_CODES = [
+            "HDKULIMIT01", "HDKULIMIT02", "HDKULIMIT03", "HDKULIMIT04", "HDKULIMIT05",
+            "HDKULIMIT06", "HDKULIMIT07", "HDKULIMIT08", "HDKULIMIT09", "HDKULIMIT10"
+        ];
 
         function checkRegister() {
             const saved = localStorage.getItem(USER_KEY);
             if (saved) {
                 userData = JSON.parse(saved);
+                if (!userData.status) userData.status = 'Reguler';
+                
+                if (userData.status === 'Premium' && userData.expiredTime) {
+                    if (Date.now() > userData.expiredTime) {
+                        userData.status = 'Reguler';
+                        userData.expiredTime = null;
+                        localStorage.setItem(USER_KEY, JSON.stringify(userData));
+                        addBubble(`⚠️ <b>Masa aktif Premium kamu telah habis!</b> Status akun kembali menjadi Reguler.`, 'ai');
+                    }
+                }
+
                 if (userData.nama && userData.umur && userData.gender && userData.sandi) {
                     document.getElementById('registerOverlay').style.display = 'none';
-                    document.getElementById('userBadge').textContent = `👋 ${userData.nama}`;
+                    let badgeIcon = userData.status === 'Premium' ? '👑' : '👋';
+                    document.getElementById('userBadge').textContent = `${badgeIcon} ${userData.nama}`;
                     return true;
                 }
             }
@@ -370,20 +390,13 @@
         }
 
         function updateRegisterStatus() {
-            document.getElementById('statusNama').innerHTML = userData.nama?
-                `✅ Nama: ${userData.nama}` : `❌ Nama: Belum diisi`;
+            document.getElementById('statusNama').innerHTML = userData.nama? `✅ Nama: ${userData.nama}` : `❌ Nama: Belum diisi`;
             document.getElementById('statusNama').className = userData.nama? 'status-done' : 'status-pending';
-
-            document.getElementById('statusUmur').innerHTML = userData.umur?
-                `✅ Umur: ${userData.umur}` : `❌ Umur: Belum diisi`;
+            document.getElementById('statusUmur').innerHTML = userData.umur? `✅ Umur: ${userData.umur}` : `❌ Umur: Belum diisi`;
             document.getElementById('statusUmur').className = userData.umur? 'status-done' : 'status-pending';
-
-            document.getElementById('statusGender').innerHTML = userData.gender?
-                `✅ Gender: ${userData.gender}` : `❌ Gender: Belum diisi`;
+            document.getElementById('statusGender').innerHTML = userData.gender? `✅ Gender: ${userData.gender}` : `❌ Gender: Belum diisi`;
             document.getElementById('statusGender').className = userData.gender? 'status-done' : 'status-pending';
-
-            document.getElementById('statusSandi').innerHTML = userData.sandi?
-                `✅ Sandi: ••••••••` : `❌ Sandi: Belum diisi`;
+            document.getElementById('statusSandi').innerHTML = userData.sandi? `✅ Sandi: ••••••••` : `❌ Sandi: Belum diisi`;
             document.getElementById('statusSandi').className = userData.sandi? 'status-done' : 'status-pending';
         }
 
@@ -391,7 +404,8 @@
             localStorage.setItem(USER_KEY, JSON.stringify(userData));
             if (userData.nama && userData.umur && userData.gender && userData.sandi) {
                 document.getElementById('registerOverlay').style.display = 'none';
-                document.getElementById('userBadge').textContent = `👋 ${userData.nama}`;
+                let badgeIcon = userData.status === 'Premium' ? '👑' : '👋';
+                document.getElementById('userBadge').textContent = `${badgeIcon} ${userData.nama}`;
                 addBubble(`Selamat datang ${userData.nama}! Daftar berhasil. Silakan pake bot HDKU 🔥`, 'ai');
                 showWelcome();
             }
@@ -420,13 +434,20 @@
             }
         }
 
-        // === UPDATE: addMessage SUPPORT TOMBOL ===
+        function getMaxRequests() {
+            return userData.status === 'Premium' ? 25 : 15;
+        }
+
+        function getBonusLimit() {
+            return parseInt(localStorage.getItem(BONUS_LIMIT_KEY) || '0');
+        }
+
         function addBubble(text, type = 'user', buttons = []) {
             const bubble = document.createElement('div');
             bubble.className = `bubble ${type}`;
             bubble.innerHTML = text;
 
-                        if (buttons.length > 0) {
+            if (buttons.length > 0) {
                 const btnContainer = document.createElement('div');
                 btnContainer.className = 'button-container';
                 buttons.forEach(btnText => {
@@ -484,18 +505,24 @@
         function checkDailyLimit() {
             const now = new Date();
             const data = JSON.parse(localStorage.getItem(LIMIT_KEY) || '{}');
+            const maxRequestBase = getMaxRequests();
+            const bonus = getBonusLimit();
+            const totalMaxRequests = maxRequestBase + bonus;
+
             if (!data.resetTime || now >= new Date(data.resetTime)) {
                 const newData = {
                     count: 0,
                     resetTime: getResetTime().toISOString()
                 };
                 localStorage.setItem(LIMIT_KEY, JSON.stringify(newData));
-                return { allowed: true, remaining: MAX_REQUESTS, resetTime: newData.resetTime };
+                return { allowed: true, remaining: totalMaxRequests, used: 0, max: totalMaxRequests, resetTime: newData.resetTime };
             }
-            const remaining = MAX_REQUESTS - (data.count || 0);
+            const remaining = totalMaxRequests - (data.count || 0);
             return {
                 allowed: remaining > 0,
-                remaining: remaining,
+                remaining: Math.max(0, remaining),
+                used: data.count || 0,
+                max: totalMaxRequests,
                 resetTime: data.resetTime
             };
         }
@@ -524,7 +551,7 @@
                 await fetch('https://www.tikwm.com/api/?url=test', { method: 'HEAD', mode: 'no-cors' });
                 serverPing = Date.now() - pingStart;
             } catch (e) {
- serverPing = Date.now() - startTime;
+                serverPing = Date.now() - startTime;
             }
             try {
                 const dlStart = Date.now();
@@ -554,7 +581,6 @@
             `;
         }
 
-        // === FUNGSI SHOW/HIDE BAN OVERLAY ===
         function showBanOverlay(title, desc) {
             document.querySelector('#maintenance-overlay h2').textContent = title;
             document.querySelector('#maintenance-overlay p').textContent = desc;
@@ -571,7 +597,7 @@
                 addBubble(`
                     <div class="limit-notice">
                         🚫 <b>Limit Harian Habis boskuh</b><br>
-                        Udah 15 request hari ini<br>
+                        Udah mencapai batas maksimal hari ini<br>
                         <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
                     </div>
                 `, 'ai');
@@ -584,14 +610,12 @@
                 const json = await res.json();
                 chatWindow.removeChild(loading);
 
-                // DETEKSI BAN TIKWM
                 if (json.code === -1 && json.msg && json.msg.includes('frequent')) {
                     isBanned = true;
                     banEndTime = Date.now() + TIKWM_BAN_DURATION;
-                    showBanOverlay('SRRVER LAGI DOWN', 'TUNGGU 60 DETIK BOSS');
+                    showBanOverlay('SERVER LAGI DOWN', 'TUNGGU 60 DETIK BOSS');
                     addBubble(`🚫 SERVER down 60 detik. Sabar ya bosku`, 'ai');
 
-                    // AUTO UNBAN SETELAH 60 DETIK
                     setTimeout(() => {
                         isBanned = false;
                         hideBanOverlay();
@@ -602,12 +626,12 @@
 
                 if (json.code === 0) {
                     incrementLimit();
-                    const sisa = checkDailyLimit().remaining;
+                    const currentLimit = checkDailyLimit();
                     const d = json.data;
                     let resultHTML = `
                         <div class="result-card">
                             <div style="font-size:0.75rem;margin-bottom:8px;opacity:0.7;text-align:right">
-                                Sisa request hari ini: ${sisa}/15
+                                Sisa request hari ini: ${currentLimit.remaining}/${currentLimit.max}
                             </div>
                             <div class="user-info">
                                 <img src="${d.author?.avatar || ''}">
@@ -619,26 +643,12 @@
                             <img src="${d.cover}" class="video-preview">
                             <div class="desc-box" id="desc-${d.id}">${d.title || 'Tidak ada deskripsi.'}</div>
                             <div class="tt-stats">
-                                <div>
-                                    <i class="fa-solid fa-heart"></i>
-                                    <div>${formatAngka(d.digg_count)}</div>
-                                    <span>Like</span>
-                                </div>
-                                <div>
-                                    <i class="fa-solid fa-comment"></i>
-                                    <div>${formatAngka(d.comment_count)}</div>
-                                    <span>Komen</span>
-                                </div>
-                                <div>
-                                    <i class="fa-solid fa-share"></i>
-                                    <div>${formatAngka(d.share_count)}</div>
-                                    <span>Share</span>
-                                </div>
+                                <div><i class="fa-solid fa-heart"></i><div>${formatAngka(d.digg_count)}</div><span>Like</span></div>
+                                <div><i class="fa-solid fa-comment"></i><div>${formatAngka(d.comment_count)}</div><span>Komen</span></div>
+                                <div><i class="fa-solid fa-share"></i><div>${formatAngka(d.share_count)}</div><span>Share</span></div>
                             </div>
                             <div class="action-btns">
-                                <button class="btn-small btn-copy" onclick="copyText('desc-${d.id}', this)">
-                                    <i class="fa-solid fa-copy"></i> Salin Desk
-                                </button>
+                                <button class="btn-small btn-copy" onclick="copyText('desc-${d.id}', this)"><i class="fa-solid fa-copy"></i> Salin Desk</button>
                     `;
                     if (d.images && d.images.length > 0) {
                         resultHTML += `
@@ -685,28 +695,23 @@
                 chatWindow.removeChild(loading);
                 addBubble('Gagal ambil data TikTok. Server lagi error atau link invalid', 'ai');
             } finally {
-                setTimeout(() => {
-                    isDownloading = false;
-                }, 3000);
+                setTimeout(() => { isDownloading = false; }, 3000);
             }
         }
 
-        // === FUNGSI HD FOTO BARU ===
-                // === FUNGSI HD FOTO BARU (DENGAN PENGURANGAN LIMIT -3) ===
         async function enhanceToHD() {
             if (!lastUploadedImage) {
-                addBubble('Kirim foto dulu boss, baru ketik.hd', 'ai');
+                addBubble('Kirim foto dulu boss, baru ketik .hd', 'ai');
                 return;
             }
 
-            // 1. Cek apakah limit masih cukup (Minimal sisa 3)
             const limit = checkDailyLimit();
             if (!limit.allowed || limit.remaining < 3) {
                 addBubble(`
                     <div class="limit-notice">
                         🚫 <b>Limit Kurang boskuh</b><br>
                         Fitur <code>.hd</code> butuh 3 limit harian.<br>
-                        Sisa limitmu: <b>${limit.remaining}</b>/15<br>
+                        Sisa limitmu: <b>${limit.remaining}</b>/${limit.max}<br>
                         <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
                     </div>
                 `, 'ai');
@@ -730,17 +735,16 @@
                     canvas.toBlob((blob) => {
                         chatWindow.removeChild(loading);
                         
-                        // 2. Potong limit sebanyak 3x kalau proses berhasil
                         incrementLimit();
                         incrementLimit();
                         incrementLimit();
                         
-                        const sisa = checkDailyLimit().remaining;
+                        const currentLimit = checkDailyLimit();
                         const url = URL.createObjectURL(blob);
                         const resultHTML = `
                             <div class="result-card">
                                 <div style="font-size:0.75rem;margin-bottom:8px;opacity:0.7;text-align:right">
-                                    Sisa request hari ini: ${sisa}/15 (-3 limit)
+                                    Sisa request hari ini: ${currentLimit.remaining}/${currentLimit.max} (-3 limit)
                                 </div>
                                 <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-wand-magic-sparkles"></i> Foto HD Berhasil</p>
                                 <img src="${url}" class="image-preview">
@@ -764,14 +768,12 @@
                 chatWindow.removeChild(loading);
                 addBubble('Error HD-in foto bg', 'ai');
             }
-
         }
 
         async function handleMessage() {
             const msg = input.value.trim();
             if (!msg) return;
 
-            // CEK APAKAH LAGI KENA BAN
             if (isBanned) {
                 const now = Date.now();
                 if (now < banEndTime) {
@@ -780,14 +782,12 @@
                     input.value = '';
                     return;
                 } else {
-                    // BAN HABIS
                     isBanned = false;
                     spamCount = 0;
                     hideBanOverlay();
                 }
             }
 
-            // DETEKSI SPAM CHAT
             spamCount++;
             if (spamTimer) clearTimeout(spamTimer);
             spamTimer = setTimeout(() => { spamCount = 0; }, SPAM_WINDOW);
@@ -796,14 +796,13 @@
                 isBanned = true;
                 banEndTime = Date.now() + CHAT_BAN_DURATION;
                 showBanOverlay('KAMU DI-BAN 5 MENIT', 'JANGAN SPAM CHAT YA KON😭');
-                addBubble(`🚫 Kena ban 5 menit karena spam chat ${nama}`, 'ai');
+                addBubble(`🚫 Kena ban 5 menit karena spam chat ${userData.nama || ''}`, 'ai');
                 input.value = '';
 
-                // AUTO UNBAN SETELAH 5 MENIT
                 setTimeout(() => {
                     isBanned = false;
                     hideBanOverlay();
-                    addBubble(`✅ Ban udah kelar. Jangan spam lagi ya ${nama}`, 'ai');
+                    addBubble(`✅ Ban udah kelar. Jangan spam lagi ya ${userData.nama || ''}`, 'ai');
                 }, CHAT_BAN_DURATION);
                 return;
             }
@@ -841,34 +840,197 @@
             }
 
             if (!userData.nama ||!userData.umur ||!userData.gender ||!userData.sandi) {
-                addBubble('⚠️ Daftar dulu yaa! Ketik.nama,.umur,.gender,.sandi satu-satu', 'ai');
+                addBubble('⚠️ Daftar dulu yaa! Ketik .nama, .umur, .gender, .sandi satu-satu', 'ai');
                 return;
             }
 
-            // === FITUR BARU:.MENU ===
+            if (msg === '.me') {
+                const currentLimit = checkDailyLimit();
+                const statusBadge = userData.status === 'Premium' ? '👑 Premium' : '👤 Reguler';
+                const premiumColor = userData.status === 'Premium' ? 'color: var(--gold); font-weight: bold;' : '';
+                
+                const profilHTML = `
+                    <div class="result-card" style="border: 1px solid ${userData.status === 'Premium' ? 'var(--gold)' : 'var(--glass-border)'};">
+                        <p style="font-weight:bold; font-size:1.1rem; margin-bottom:12px; background: linear-gradient(90deg, #7b2ff7, #f107a3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            <i class="fa-solid fa-id-card"></i> PROFIL USER HDKU
+                        </p>
+                        <div style="font-size: 0.9rem; line-height: 1.8;">
+                            <div>📝 <b>Nama :</b> ${userData.nama}</div>
+                            <div>🎂 <b>Umur :</b> ${userData.umur} Tahun</div>
+                            <div>⚥ <b>Gender :</b> ${userData.gender}</div>
+                            <div>⚡ <b>Sisa Limit :</b> <code>${currentLimit.remaining}/${currentLimit.max}</code></div>
+                            <div>💎 <b>Status Akun :</b> <span style="${premiumColor}">${statusBadge}</span></div>
+                        </div>
+                    </div>
+                `;
+                addBubble(profilHTML, 'ai');
+                return;
+            }
+
+            if (msg === '.cekprem') {
+                const isPremium = userData.status === 'Premium';
+                let cekpremHTML = '';
+
+                if (isPremium) {
+                    let sisaWaktuStr = 'Tidak diketahui';
+                    if (userData.expiredTime) {
+                        const selisihMili = userData.expiredTime - Date.now();
+                        if (selisihMili > 0) {
+                            const totalJam = Math.floor(selisihMili / (1000 * 60 * 60));
+                            if (totalJam >= 24) {
+                                const hari = Math.floor(totalJam / 24);
+                                const jam = totalJam % 24;
+                                sisaWaktuStr = `${hari} Hari ${jam} Jam`;
+                            } else {
+                                const menit = Math.floor((selisihMili % (1000 * 60 * 60)) / (1000 * 60));
+                                sisaWaktuStr = `${totalJam} Jam ${menit} Menit`;
+                            }
+                        } else {
+                            sisaWaktuStr = 'Habis';
+                        }
+                    }
+
+                    cekpremHTML = `
+                        <div class="result-card" style="border: 1px solid var(--gold); background: rgba(255, 215, 0, 0.03);">
+                            <p style="font-weight:bold; font-size:1.1rem; margin-bottom:8px; color: var(--gold);">
+                                <i class="fa-solid fa-crown"></i> STATUS PREMIUM ACTIVE
+                            </p>
+                            <p style="font-size:0.85rem; line-height:1.5; margin-bottom:10px;">
+                                Halo <b>${userData.nama}</b>, akun kamu saat ini berstatus <span style="color: var(--gold); font-weight: bold;">👑 PREMIUM USER</span>.
+                            </p>
+                            <div style="font-size:0.8rem; color: var(--text-dim); line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; margin-bottom: 8px;">
+                                <div>⏳ <b>Sisa Waktu Premium:</b> <span style="color: #fff; font-weight: 600;">${sisaWaktuStr}</span></div>
+                            </div>
+                            <div style="font-size:0.8rem; color: var(--text-dim); line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px;">
+                                <div>🚀 <b>Keuntungan Aktif:</b></div>
+                                <div>• Limit harian ditingkatkan menjadi <b>25 request/hari</b></div>
+                                <div>• download menjadi cepat</div>
+                                <div>• Akses fitur eksklusif & FITUR BAN MASIH BERLAKU YA MEK</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    cekpremHTML = `
+                        <div class="result-card" style="border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.01);">
+                            <p style="font-weight:bold; font-size:1.1rem; margin-bottom:8px; color: var(--text-dim);">
+                                <i class="fa-solid fa-user-shield"></i> STATUS PREMIUM CHECK
+                            </p>
+                            <p style="font-size:0.85rem; line-height:1.5; margin-bottom:12px;">
+                                Akun kamu saat ini berstatus <b>👤 REGULER (GRATISAN)</b>. Nikmati batas limit dasar 15 request/hari.
+                            </p>
+                            <div style="background: rgba(123, 47, 247, 0.1); border: 1px solid var(--primary); padding: 10px; border-radius: 8px; font-size:0.8rem; margin-bottom:12px;">
+                                ✨ <b>Mau upgrade ke Premium?</b><br>
+                                Dapatkan benefit 25 limit request/hari, server anti-antri, dan premium badge! Tukarkan kode premium dengan mengetik <code>.rdm [kode]</code> atau beli via Owner.
+                            </div>
+                            <button class="btn-small btn-dl" style="width: 100%; padding: 10px;" onclick="input.value='.owner'; handleMessage();">
+                                <i class="fa-brands fa-whatsapp"></i> Hubungi Owner / Beli Premium
+                            </button>
+                        </div>
+                    `;
+                }
+                addBubble(cekpremHTML, 'ai');
+                return;
+            }
+
+            if (msg === '.event') {
+                const linkEventWeb = "https://pitnewbie.github.io/VIEW-GENERATOR.ID/";
+
+                const eventHTML = `
+                    <div class="result-card" style="border: 1px solid var(--primary-glow); background: rgba(241, 7, 163, 0.05);">
+                        <p style="font-weight:bold; font-size:1.1rem; margin-bottom:8px; background: linear-gradient(90deg, #f107a3, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            <i class="fa-solid fa-star"></i> HDKU AI EVENT TERBARU
+                        </p>
+                        <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:12px; line-height:1.4;">
+                            Yuk ikutan event seru dari kami! Klik tombol di bawah ini untuk langsung menuju halaman utama event resmi. Jangan sampai kelewatan hadiah menariknya boskuh! 🔥
+                        </p>
+                        <a href="${linkEventWeb}" target="_blank" style="text-decoration: none;">
+                            <button class="btn-small" style="background: linear-gradient(135deg, var(--primary), var(--primary-glow)); width: 100%; padding: 12px; font-size: 0.9rem; font-weight: 700; box-shadow: 0 4px 15px rgba(241, 7, 163, 0.3);">
+                                <i class="fa-solid fa-circle-play"></i> Masuk Event 🌟
+                            </button>
+                        </a>
+                    </div>
+                `;
+                addBubble(eventHTML, 'ai');
+                return;
+            }
+
+            if (msg.startsWith('.rdm ')) {
+                const kodeInput = msg.substring(5).trim();
+                if (!kodeInput) {
+                    addBubble('Format salah! Contoh: <code>.rdm KODENYA</code>', 'ai');
+                    return;
+                }
+
+                let usedCodes = JSON.parse(localStorage.getItem(REDEEMED_KEY) || '[]');
+
+                if (usedCodes.includes(kodeInput)) {
+                    addBubble('❌ <b>Gagal Redeem!</b> Kode ini sudah pernah kamu pakai sebelumnya.', 'ai');
+                    return;
+                }
+
+                if (PREMIUM_CODES[kodeInput]) {
+                    const dataKode = PREMIUM_CODES[kodeInput];
+                    userData.status = 'Premium';
+                    
+                    // Set waktu kedaluwarsa baru (akumulatif jika sebelumnya sudah premium)
+                    const masaTambahan = dataKode.days * 24 * 60 * 60 * 1000;
+                    if (userData.expiredTime && userData.expiredTime > Date.now()) {
+                        userData.expiredTime += masaTambahan;
+                    } else {
+                        userData.expiredTime = Date.now() + masaTambahan;
+                    }
+
+                    saveUserData();
+
+                    usedCodes.push(kodeInput);
+                    localStorage.setItem(REDEEMED_KEY, JSON.stringify(usedCodes));
+
+                    addBubble(`👑 <b>REDEEM BERHASIL!</b><br>Selamat, akun kamu sekarang aktif sebagai <b>${dataKode.label}</b>! Limit harianmu naik jadi <b>25 request/hari</b>. 🔥`, 'ai');
+                    return;
+                }
+
+                if (LIMIT_CODES.includes(kodeInput)) {
+                    let currentBonus = getBonusLimit();
+                    currentBonus += 1; 
+                    localStorage.setItem(BONUS_LIMIT_KEY, currentBonus.toString());
+
+                    usedCodes.push(kodeInput);
+                    localStorage.setItem(REDEEMED_KEY, JSON.stringify(usedCodes));
+
+                    addBubble(`⚡ <b>REDEEM BERHASIL!</b><br>Kode bonus berhasil dicairkan. Kuota limit harianmu ditambah <b>+1 request</b> secara permanen/sesi!`, 'ai');
+                    return;
+                }
+
+                addBubble('❌ <b>Kode Salah!</b> Kode tidak valid atau tidak ditemukan.', 'ai');
+                return;
+            }
+
             if (msg === '.menu') {
                 addBubble(`<pre style="font-family: monospace; white-space: pre; margin: 0; font-size: 0.8rem; line-height: 1.3;">╭━━━『 *MENU HDKU AI* 』━━━╮
 │
+├ *User & Akun*
+│ • .me - Cek info profil 
+│ • .cekprem - Cek masa aktif ⭐
+│ • .rdm kode - Tukar kode redeem
+│ • .event - masuk Event 🌟
+│ • .logout - Keluar dari akun
+│ • .owner - Lapor bug ke owner
+│
 ├ *Downloader*
-│ •.tt [link] - Download TikTok
-│ •.yt [link] - Download YouTube
+│ • .tt [link] - Download TikTok
+│ • .yt [link] - Download YouTube
 │
 ├ *Tools*
-│ •.hd - HD-in foto 2x [kirim foto]
-│ •.ping - Cek sinyal server
+│ • .hd - HDin foto 2x [kirim foto]
+│ • .ping - Cek sinyal server
 │
-├ *Akun*
-│ •.logout - Keluar dari akun
-│ •.owner - Lapor bug ke owner
-│
-╰━━━『 *HDKU AI B5* 』━━━╯</pre>`, 'ai');
+╰━━━『 *HDKU AI B6* 』━━━╯</pre>`, 'ai');
                 return;
             }
 
-            // === FITUR BARU:.LOGOUT ===
             if (msg === '.logout') {
                 localStorage.removeItem(USER_KEY);
-                userData = { nama: null, umur: null, gender: null, sandi: null };
+                userData = { nama: null, umur: null, gender: null, sandi: null, status: 'Reguler', expiredTime: null };
                 chatWindow.innerHTML = '';
                 document.getElementById('userBadge').textContent = '';
                 document.getElementById('registerOverlay').style.display = 'flex';
@@ -876,11 +1038,10 @@
                 addBubble('✅ Berhasil logout. Silakan daftar ulang.', 'ai');
                 return;
             }
-            // --- FITUR OWNER INTERAKTIF (FIXED - CARD VERSION) ---
+
             if (msg === '.owner') {
                 const textAwal = `*Laporkan Bug*\n\nApakah kamu mau melaporkan bug ke owner?`;
                 const bubble = addBubble(textAwal, 'ai', ['Iya', 'Tidak']);
-                
                 const buttons = bubble.querySelectorAll('.choice-btn');
                 
                 buttons.forEach(btn => {
@@ -889,7 +1050,6 @@
                         e.stopPropagation();
 
                         if (btn.textContent === 'Iya') {
-                            // KITA MASUKKAN LAGI HTML KARTUNYA DI SINI
                             bubble.innerHTML = `
                                 <div class="result-card" style="border: 1px solid var(--whatsapp);">
                                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
@@ -909,23 +1069,22 @@
                         } else {
                             bubble.innerHTML = `Oke siap. Kalau ada kendala lagi jangan ragu buat hubungi ya! 🙏`;
                         }
-
                         chatWindow.scrollTop = chatWindow.scrollHeight;
-                        saveChat(); // Simpan biar pas refresh tampilannya tetep kartu
+                        saveChat();
                     };
                 });
                 return;
             }
 
-
             if (msg === '.hd') {
                 enhanceToHD();
                 return;
             }
-                        if (msg.startsWith('.tt ')) {
+
+            if (msg.startsWith('.tt ')) {
                 const url = msg.substring(4).trim();
                 if (!url) {
-                    addBubble('Link-nya mana ${nama}? Format: <code>.tt https://tiktok.com/xxx</code>', 'ai');
+                    addBubble(`Link-nya mana? Format: <code>.tt https://tiktok.com/xxx</code>`, 'ai');
                     return;
                 }
                 const limit = checkDailyLimit();
@@ -933,7 +1092,7 @@
                     addBubble(`
                         <div class="limit-notice">
                             🚫 <b>Limit Harian Habis boskuh</b><br>
-                            Udah 15 request hari ini<br>
+                            Sisa limit harianmu sudah habis.<br>
                             <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
                         </div>
                     `, 'ai');
@@ -966,7 +1125,7 @@
             } else if (msg.startsWith('.yt ')) {
                 const url = msg.substring(4).trim();
                 if (!url) {
-                    addBubble('Link YouTube-nya mana ${nama}? Format: <code>.yt https://youtube.com/watch?v=xxx</code>', 'ai');
+                    addBubble(`Link YouTube-nya mana? Format: <code>.yt https://youtube.com/watch?v=xxx</code>`, 'ai');
                     return;
                 }
                 const loading = addLoading();
@@ -1118,13 +1277,10 @@
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
                 btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
-                setTimeout(() => {
-                    btn.innerHTML = originalTxt;
-                }, 2000);
+                setTimeout(() => { btn.innerHTML = originalTxt; }, 2000);
             });
         }
 
-        // === UPLOAD FOTO HANDLER BARU ===
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
@@ -1153,53 +1309,46 @@
         });
 
         function showWelcome() {
-            addBubble(`Selamat datang di HDKU Ai v6.1, HDKU Ai adalah ai downloader buatan yang dikembangkan oleh PitNewbie.<br><br><b>Info Lengkap:</b><br>: <a href="https://whatsapp.com/channel/0029Vb6678635fLqu0pxqx2K" class="wa-link" target="_blank">Klik di sini</a>`, "ai");
+            addBubble(`Selamat datang di HDKU Ai v20.5, HDKU Ai adalah ai downloader buatan yang dikembangkan oleh PitNewbie.<br><br><b>Info Lengkap:</b><br>: <a href="https://whatsapp.com/channel/0029Vb6678635fLqu0pxqx2K" class="wa-link" target="_blank">Klik di sini</a>`, "ai");
         }
 
         loadChat();
-// --- FITUR IKLAN TANPA EXTERNAL FILE (LANGSUNG DI HTML) ---
-async function tampilkanIklanOtomatis() {
-    // 1. GANTI LINK TIKTOK IKLANMU DI SINI
-    const linkIklan = "https://vt.tiktok.com/ZS9KpMMEN/"; 
-    
-    // ID Iklan (Ganti v1 jadi v2 dst kalau kamu ganti link, biar muncul lagi di user)
-    const idIklan = "iklan_v1";
 
-    // Cek apakah user sudah lihat iklan ini di sesi sekarang
-    if (sessionStorage.getItem(idIklan)) return;
+        async function tampilkanIklanOtomatis() {
+            const linkIklan = "https://vt.tiktok.com/ZS9KpMMEN/"; 
+            const idIklan = "iklan_v1";
 
-    try {
-        // Ambil data preview pakai API tikwm (biar tampilannya mewah ada gambarnya)
-        const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(linkIklan)}`);
-        const json = await res.json();
-        
-        if (json.code === 0) {
-            const d = json.data;
-            const adHTML = `
-                <div class="result-card" style="border: 1px solid gold; background: rgba(255, 215, 0, 0.05); animation: slideUp 0.5s ease;">
-                    <p style="color: gold; font-weight: bold; font-size: 0.75rem; margin-bottom: 8px;">
-                        <i class="fa-solid fa-star"></i> REKOMENDASI OWNER
-                    </p>
-                    <img src="${d.cover}" class="video-preview" style="border-radius: 10px; height: 180px; width: 100%; object-fit: cover;">
-                    <div style="font-size: 0.85rem; margin: 8px 0; color: #fff; font-weight: 500;">${d.title}</div>
-                    <a href="${linkIklan}" target="_blank" style="text-decoration: none;">
-                        <button class="btn-small" style="background: linear-gradient(90deg, #7b2ff7, #f107a3); width: 100%; border: none; padding: 12px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <i class="fa-brands fa-tiktok"></i> Tonton VT Sekarang
-                        </button>
-                    </a>
-                </div>
-            `;
-            addBubble(adHTML, 'ai');
-            sessionStorage.setItem(idIklan, 'true'); // Tandai sudah muncul
+            if (sessionStorage.getItem(idIklan)) return;
+
+            try {
+                const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(linkIklan)}`);
+                const json = await res.json();
+                
+                if (json.code === 0) {
+                    const d = json.data;
+                    const adHTML = `
+                        <div class="result-card" style="border: 1px solid gold; background: rgba(255, 215, 0, 0.05); animation: slideUp 0.5s ease;">
+                            <p style="color: gold; font-weight: bold; font-size: 0.75rem; margin-bottom: 8px;">
+                                <i class="fa-solid fa-star"></i> REKOMENDASI OWNER
+                            </p>
+                            <img src="${d.cover}" class="video-preview" style="border-radius: 10px; height: 180px; width: 100%; object-fit: cover;">
+                            <div style="font-size: 0.85rem; margin: 8px 0; color: #fff; font-weight: 500;">${d.title}</div>
+                            <a href="${linkIklan}" target="_blank" style="text-decoration: none;">
+                                <button class="btn-small" style="background: linear-gradient(90deg, #7b2ff7, #f107a3); width: 100%; border: none; padding: 12px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <i class="fa-brands fa-tiktok"></i> Tonton VT Sekarang
+                                </button>
+                            </a>
+                        </div>
+                    `;
+                    addBubble(adHTML, 'ai');
+                    sessionStorage.setItem(idIklan, 'true');
+                }
+            } catch (e) {
+                console.log("Gagal menampilkan iklan");
+            }
         }
-    } catch (e) {
-        console.log("Gagal menampilkan iklan");
-    }
-}
 
-// Jalankan iklan setelah user standby 1 menit (60000ms)
-setTimeout(tampilkanIklanOtomatis, 60000);
-
+        setTimeout(tampilkanIklanOtomatis, 60000);
     </script>
 </body>
 </html>
