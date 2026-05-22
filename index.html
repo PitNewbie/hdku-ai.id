@@ -43,7 +43,7 @@
         .user-badge {
             position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
             font-size: 0.75rem; color: var(--primary-glow); font-weight: 600;
-            max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+            max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
         .clear-btn {
             position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
@@ -110,6 +110,55 @@
         #upload-btn { background: #444; }
         #file-input { display: none; }
 
+        /* Desain Form Login / Register Baru */
+        .auth-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 20, 0.92); backdrop-filter: blur(25px);
+            z-index: 999; display: flex; align-items: center; justify-content: center;
+            padding: 20px; animation: fadeIn 0.3s ease;
+        }
+        .auth-box {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 30px 25px; max-width: 380px; width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4); text-align: center;
+        }
+        .auth-box h2 {
+            font-size: 1.6rem; font-weight: 700; margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-glow));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .auth-box p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px; }
+        .auth-input-group {
+            display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;
+        }
+        .auth-field {
+            position: relative; width: 100%;
+        }
+        .auth-field i {
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            color: var(--text-dim); font-size: 0.95rem;
+        }
+        .auth-field input {
+            width: 100%; padding: 12px 16px 12px 42px; background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text);
+            font-size: 0.9rem; outline: none; transition: 0.3s;
+        }
+        .auth-field input:focus { border-color: var(--primary); }
+        .auth-btn {
+            width: 100%; padding: 12px; border-radius: 12px; border: none;
+            color: white; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+            background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+            box-shadow: 0 4px 15px rgba(123, 47, 247, 0.3); transition: 0.2s;
+        }
+        .auth-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(241, 7, 163, 0.4); }
+        .auth-switch {
+            margin-top: 15px; font-size: 0.8rem; color: var(--text-dim);
+        }
+        .auth-switch span {
+            color: var(--primary-glow); font-weight: 600; cursor: pointer; margin-left: 4px;
+        }
+        .auth-switch span:hover { text-decoration: underline; }
+
         .result-card {
             background: rgba(0,0,0,0.3); border-radius: 12px; padding: 14px;
             border: 1px solid var(--glass-border); margin-top: 8px;
@@ -118,13 +167,19 @@
             width: 100%; max-height: 300px; object-fit: cover;
             border-radius: 10px; margin-bottom: 10px;
         }
+        .image-preview.transparent-bg {
+            object-fit: contain;
+            background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 25%), 
+                              linear-gradient(-45deg, #1d1d1d 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #1d1d1d 75%), 
+                              linear-gradient(-45deg, transparent 75%, #1d1d1d 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
         .user-info {
             display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
         }
-        .user-info img {
-            width: 40px; height: 40px; border-radius: 50%;
-            border: 2px solid var(--primary);
-        }
+        .user-info img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--primary); }
         .tt-stats {
             display: flex; justify-content: space-around; text-align: center;
             font-size: 12px; margin: 15px 0; padding: 10px 0;
@@ -136,10 +191,7 @@
             font-size: 0.8rem; max-height: 80px; overflow-y: auto; white-space: pre-wrap;
             border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px;
         }
-        .video-info {
-            display: flex; justify-content: space-between; font-size: 0.75rem;
-            color: var(--text-dim); margin-bottom: 10px; padding: 0 4px;
-        }
+        .video-info { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 10px; padding: 0 4px; }
         .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
         .quality-btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 10px; }
         .btn-small {
@@ -163,61 +215,13 @@
         .photo-thumb { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
 
         code { background: rgba(123,47,247,0.2); padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
-        .wa-link {
-            color: var(--whatsapp);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .wa-link:hover {
-            text-decoration: underline;
-            text-shadow: 0 0 8px rgba(37, 211, 102, 0.6);
-        }
+        .wa-link { color: var(--whatsapp); text-decoration: none; font-weight: 600; transition: 0.2s; }
+        .wa-link:hover { text-decoration: underline; text-shadow: 0 0 8px rgba(37, 211, 102, 0.6); }
 
-        .queue-notice {
-            background: rgba(139, 92, 246, 0.15);
-            border: 1px solid var(--primary);
-            border-radius: 12px;
-            padding: 14px;
-            text-align: center;
-            margin-top: 8px;
-        }
+        .queue-notice { background: rgba(139, 92, 246, 0.15); border: 1px solid var(--primary); border-radius: 12px; padding: 14px; text-align: center; margin-top: 8px; }
         .queue-notice b { color: var(--primary-glow); }
-
-        .limit-notice {
-            background: rgba(255, 71, 87, 0.15);
-            border: 1px solid var(--danger);
-            border-radius: 12px;
-            padding: 14px;
-            text-align: center;
-            margin-top: 8px;
-        }
+        .limit-notice { background: rgba(255, 71, 87, 0.15); border: 1px solid var(--danger); border-radius: 12px; padding: 14px; text-align: center; margin-top: 8px; }
         .limit-notice b { color: var(--danger); }
-
-        .register-overlay {
-            position: absolute; top: 0; left: 0; right: 0; 
-            bottom: 85px;
-            background: rgba(10, 10, 20, 0.95); backdrop-filter: blur(15px);
-            z-index: 50; display: flex; align-items: center; justify-content: center;
-            flex-direction: column; padding: 20px; text-align: center;
-        }
-        .register-box {
-            background: var(--card); border: 1px solid var(--glass-border);
-            border-radius: 16px; padding: 25px; max-width: 400px; width: 100%;
-        }
-        .register-box h2 {
-            background: linear-gradient(90deg, var(--primary), var(--primary-glow));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .register-box p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 15px; }
-        .register-status {
-            background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px;
-            font-size: 0.8rem; margin-top: 15px; text-align: left;
-        }
-        .register-status div { margin: 4px 0; }
-        .status-done { color: var(--whatsapp); }
-        .status-pending { color: var(--text-dim); }
 
         .button-container { margin-top: 10px; display: flex; gap: 8px; }
         .choice-btn {
@@ -231,13 +235,11 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 20, 0.7); backdrop-filter: blur(12px);
             z-index: 9999; display: none; align-items: center; justify-content: center;
-            animation: fadeIn 0.5s ease;
         }
         .maintenance-box {
             background: var(--card); border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 40px 30px; text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            max-width: 400px; width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); max-width: 400px; width: 90%;
         }
         .maintenance-box i {
             font-size: 3rem; margin-bottom: 20px;
@@ -273,21 +275,40 @@
 </head>
 <body>
     <div class="chat-container">
-        <div class="register-overlay" id="registerOverlay" style="display:none;">
-            <div class="register-box">
-                <h2>🔐 Daftar Dulu Boskuhh</h2>
-                <p>Sebelum pake HDKU Bot, isi data ini satu-satu, isinya wajib dijeda selama 8 detik, biar ga kena spam:</p>
-                <code>.nama Spasi NamaLu</code><br>
-                <code>.umur Spasi UmurLu</code><br>
-                <code>.gender Spasi Cowok/Cewek</code><br>
-                <code>.sandi Spasi PasswordLu</code>
-
-                <div class="register-status" id="registerStatus">
-                    <div id="statusNama" class="status-pending">❌ Nama: Belum diisi</div>
-                    <div id="statusUmur" class="status-pending">❌ Umur: Belum diisi</div>
-                    <div id="statusGender" class="status-pending">❌ Gender: Belum diisi</div>
-                    <div id="statusSandi" class="status-pending">❌ Sandi: Belum diisi</div>
+        
+        <div class="auth-overlay" id="authOverlay" style="display:none;">
+            <div class="auth-box" id="loginPanel">
+                <h2>🔐 Masuk Akun HDKU</h2>
+                <p>Silakan masukkan nama & sandi untuk melanjutkan</p>
+                <div class="auth-input-group">
+                    <div class="auth-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="loginName" placeholder="Masukkan Nama Lu..." autocomplete="off">
+                    </div>
+                    <div class="auth-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="loginPass" placeholder="Masukkan Sandi Lu...">
+                    </div>
                 </div>
+                <button class="auth-btn" onclick="prosesLogin()">Masuk Sekarang</button>
+                <div class="auth-switch">Belum punya akun?<span onclick="switchAuth('register')">Buat Akun Baru</span></div>
+            </div>
+
+            <div class="auth-box" id="registerPanel" style="display:none;">
+                <h2>✨ Buat Akun Baru</h2>
+                <p>Daftarkan akunmu gratis di sistem cloud pusat</p>
+                <div class="auth-input-group">
+                    <div class="auth-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="regName" placeholder="Tulis Nama Akun Baru..." autocomplete="off">
+                    </div>
+                    <div class="auth-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="regPass" placeholder="Bikin Sandi Akun...">
+                    </div>
+                </div>
+                <button class="auth-btn" onclick="prosesRegister()">Daftar Akun</button>
+                <div class="auth-switch">Sudah punya akun?<span onclick="switchAuth('login')">Masuk Di Sini</span></div>
             </div>
         </div>
 
@@ -323,6 +344,34 @@
         </div>
     </div>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyCihx8HOl876uhEgJ5k5cyEK40CCjvx6G8",
+          authDomain: "hdku-ai.firebaseapp.com",
+          databaseURL: "https://hdku-ai-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "hdku-ai",
+          storageBucket: "hdku-ai.firebasestorage.app",
+          messagingSenderId: "150138921754",
+          appId: "1:150138921754:web:603ca2a964797004c302a3",
+          measurementId: "G-Y2L3N628YH"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.firebaseDb = db;
+        window.dbRef = ref(db);
+        window.dbSet = set;
+        window.dbGet = get;
+        window.dbChild = child;
+        window.dbRefCreate = ref;
+
+        window.initHDKU();
+    </script>
+
     <script>
         const chatWindow = document.getElementById('chat-window');
         const input = document.getElementById('input');
@@ -339,7 +388,7 @@
         const LIMIT_KEY = 'hdku_daily_limit';
         const RESET_HOUR = 15;
 
-        let userData = { nama: null, umur: null, gender: null, sandi: null, status: 'Reguler', expiredTime: null };
+        let userData = { nama: null, sandi: null, status: 'Reguler', expiredTime: null };
         let lastUploadedImage = null; 
 
         let spamCount = 0;
@@ -352,7 +401,7 @@
         const TIKWM_BAN_DURATION = 60000; 
 
         const PREMIUM_CODES = {
-            "HDKUCODE12007G288": { label: "Premium 1 Bulan", days: 30 },
+            "HDKUCODE12007G287": { label: "Premium 1 Bulan", days: 30 },
             "HDKUCODE14267LGJEY": { label: "Premium 1 Minggu", days: 7 },
             "HDKUCODE819186GSNALG": { label: "Premium 1 Hari", days: 1 }
         };
@@ -361,6 +410,126 @@
             "HDKULIMIT01", "HDKULIMIT02", "HDKULIMIT03", "HDKULIMIT04", "HDKULIMIT05",
             "HDKULIMIT06", "HDKULIMIT07", "HDKULIMIT08", "HDKULIMIT09", "HDKULIMIT10"
         ];
+
+        function switchAuth(type) {
+            if (type === 'register') {
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('registerPanel').style.display = 'block';
+            } else {
+                document.getElementById('registerPanel').style.display = 'none';
+                document.getElementById('loginPanel').style.display = 'block';
+            }
+        }
+
+        // FUNGSI DAFTAR AKUN BARU (REGISTER FORM)
+        async function prosesRegister() {
+            const nameInput = document.getElementById('regName').value.trim();
+            const passInput = document.getElementById('regPass').value.trim();
+
+            if (!nameInput || !passInput) {
+                alert('Nama dan Sandi wajib diisi bray!');
+                return;
+            }
+            if (nameInput.length < 3) {
+                alert('Nama minimal harus 3 karakter!');
+                return;
+            }
+
+            if (!window.firebaseDb) {
+                alert('Firebase belum siap, tunggu sebentar bray!');
+                return;
+            }
+
+            const cleanKey = nameInput.replace(/[\.\#\$\[\]]/g, "-");
+
+            try {
+                // Cek dulu apakah nama user sudah terdaftar di Firebase
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef, `users/${cleanKey}`));
+                if (snapshot.exists()) {
+                    alert('Nama ini sudah dipakai orang lain! Coba nama lain.');
+                    return;
+                }
+
+                // Masukkan data baru ke cloud
+                const newAccount = {
+                    nama: nameInput,
+                    sandi: passInput,
+                    status: 'Reguler',
+                    expiredTime: null
+                };
+
+                await window.dbSet(window.dbRefCreate(window.firebaseDb, 'users/' + cleanKey), newAccount);
+                
+                userData = newAccount;
+                localStorage.setItem(USER_KEY, JSON.stringify(userData));
+                
+                document.getElementById('authOverlay').style.display = 'none';
+                document.getElementById('userBadge').textContent = `👋 ${userData.nama}`;
+                
+                addBubble(`🎉 <b>Pendaftaran Berhasil!</b> Akun barumu dengan nama <b>${userData.nama}</b> sukses diamankan di cloud database pusat!`, 'ai');
+                showWelcome();
+
+            } catch (err) {
+                alert('Gagal daftar ke database cloud. Cek koneksi internetmu!');
+                console.error(err);
+            }
+        }
+
+        // FUNGSI LOGIN UTAMA (LOGIN FORM)
+        async function prosesLogin() {
+            const nameInput = document.getElementById('loginName').value.trim();
+            const passInput = document.getElementById('loginPass').value.trim();
+
+            if (!nameInput || !passInput) {
+                alert('Nama dan Sandi harus diisi bray!');
+                return;
+            }
+
+            if (!window.firebaseDb) {
+                alert('Sistem Firebase belum siap!');
+                return;
+            }
+
+            const cleanKey = nameInput.replace(/[\.\#\$\[\]]/g, "-");
+
+            try {
+                const snapshot = await window.dbGet(window.dbChild(window.dbRef, `users/${cleanKey}`));
+                if (!snapshot.exists()) {
+                    alert('Akun tidak ditemukan! Klik "Buat Akun Baru" di bawah jika belum mendaftar.');
+                    return;
+                }
+
+                const cloudData = snapshot.val();
+                if (cloudData.sandi !== passInput) {
+                    alert('Sandi salah boskuh! Periksa kembali huruf besar/kecilnya.');
+                    return;
+                }
+
+                // Sukses Login
+                userData = cloudData;
+                localStorage.setItem(USER_KEY, JSON.stringify(userData));
+                
+                document.getElementById('authOverlay').style.display = 'none';
+                let badgeIcon = userData.status === 'Premium' ? '👑' : '👋';
+                document.getElementById('userBadge').textContent = `${badgeIcon} ${userData.nama}`;
+                
+                addBubble(`🔓 <b>Berhasil Masuk!</b> Selamat datang kembali <b>${userData.nama}</b>. Data cloud kamu sukses dimuat secara aman!`, 'ai');
+                showWelcome();
+
+            } catch (err) {
+                alert('Gagal terhubung ke server login.');
+            }
+        }
+
+        async function syncToFirebase(userObj) {
+            if (!window.firebaseDb || !userObj.nama || !userObj.sandi) return;
+            try {
+                const cleanKey = userObj.nama.replace(/[\.\#\$\[\]]/g, "-");
+                await window.dbSet(window.dbRefCreate(window.firebaseDb, 'users/' + cleanKey), userObj);
+            } catch(e) {
+                console.error(e);
+            }
+        }
 
         function checkRegister() {
             const saved = localStorage.getItem(USER_KEY);
@@ -373,42 +542,21 @@
                         userData.status = 'Reguler';
                         userData.expiredTime = null;
                         localStorage.setItem(USER_KEY, JSON.stringify(userData));
+                        syncToFirebase(userData);
                         addBubble(`⚠️ <b>Masa aktif Premium kamu telah habis!</b> Status akun kembali menjadi Reguler.`, 'ai');
                     }
                 }
 
-                if (userData.nama && userData.umur && userData.gender && userData.sandi) {
-                    document.getElementById('registerOverlay').style.display = 'none';
+                if (userData.nama && userData.sandi) {
+                    document.getElementById('authOverlay').style.display = 'none';
                     let badgeIcon = userData.status === 'Premium' ? '👑' : '👋';
                     document.getElementById('userBadge').textContent = `${badgeIcon} ${userData.nama}`;
                     return true;
                 }
             }
-            document.getElementById('registerOverlay').style.display = 'flex';
-            updateRegisterStatus();
+            document.getElementById('authOverlay').style.display = 'flex';
+            switchAuth('login'); // Tampilan default masuk akun
             return false;
-        }
-
-        function updateRegisterStatus() {
-            document.getElementById('statusNama').innerHTML = userData.nama? `✅ Nama: ${userData.nama}` : `❌ Nama: Belum diisi`;
-            document.getElementById('statusNama').className = userData.nama? 'status-done' : 'status-pending';
-            document.getElementById('statusUmur').innerHTML = userData.umur? `✅ Umur: ${userData.umur}` : `❌ Umur: Belum diisi`;
-            document.getElementById('statusUmur').className = userData.umur? 'status-done' : 'status-pending';
-            document.getElementById('statusGender').innerHTML = userData.gender? `✅ Gender: ${userData.gender}` : `❌ Gender: Belum diisi`;
-            document.getElementById('statusGender').className = userData.gender? 'status-done' : 'status-pending';
-            document.getElementById('statusSandi').innerHTML = userData.sandi? `✅ Sandi: ••••••••` : `❌ Sandi: Belum diisi`;
-            document.getElementById('statusSandi').className = userData.sandi? 'status-done' : 'status-pending';
-        }
-
-        function saveUserData() {
-            localStorage.setItem(USER_KEY, JSON.stringify(userData));
-            if (userData.nama && userData.umur && userData.gender && userData.sandi) {
-                document.getElementById('registerOverlay').style.display = 'none';
-                let badgeIcon = userData.status === 'Premium' ? '👑' : '👋';
-                document.getElementById('userBadge').textContent = `${badgeIcon} ${userData.nama}`;
-                addBubble(`Selamat datang ${userData.nama}! Daftar berhasil. Silakan pake bot HDKU 🔥`, 'ai');
-                showWelcome();
-            }
         }
 
         function loadChat() {
@@ -422,12 +570,16 @@
             }
         }
 
+        window.initHDKU = function() {
+            loadChat();
+        };
+
         function saveChat() {
             localStorage.setItem(CHAT_KEY, chatWindow.innerHTML);
         }
 
         function clearChat() {
-            if (confirm('Yakin mau hapus semua riwayat chat? Data login tetap aman')) {
+            if (confirm('Yakin mau hapus semua riwayat chat? Akunmu tetap login kok bray.')) {
                 localStorage.removeItem(CHAT_KEY);
                 chatWindow.innerHTML = '';
                 showWelcome();
@@ -496,9 +648,7 @@
             const now = new Date();
             const reset = new Date();
             reset.setHours(RESET_HOUR, 0, 0, 0);
-            if (now >= reset) {
-                reset.setDate(reset.getDate() + 1);
-            }
+            if (now >= reset) reset.setDate(reset.getDate() + 1);
             return reset;
         }
 
@@ -510,10 +660,7 @@
             const totalMaxRequests = maxRequestBase + bonus;
 
             if (!data.resetTime || now >= new Date(data.resetTime)) {
-                const newData = {
-                    count: 0,
-                    resetTime: getResetTime().toISOString()
-                };
+                const newData = { count: 0, resetTime: getResetTime().toISOString() };
                 localStorage.setItem(LIMIT_KEY, JSON.stringify(newData));
                 return { allowed: true, remaining: totalMaxRequests, used: 0, max: totalMaxRequests, resetTime: newData.resetTime };
             }
@@ -527,9 +674,9 @@
             };
         }
 
-        function incrementLimit() {
+        function incrementLimit(amount = 1) {
             const data = JSON.parse(localStorage.getItem(LIMIT_KEY) || '{}');
-            data.count = (data.count || 0) + 1;
+            data.count = (data.count || 0) + amount;
             if (!data.resetTime) data.resetTime = getResetTime().toISOString();
             localStorage.setItem(LIMIT_KEY, JSON.stringify(data));
         }
@@ -543,29 +690,20 @@
 
         async function pingTest() {
             const startTime = Date.now();
-            let serverPing = 0;
-            let downloadSpeed = 0;
-            let downloadStatus = 'Gagal';
+            let serverPing = 0; let downloadSpeed = 0; let downloadStatus = 'Gagal';
             try {
                 const pingStart = Date.now();
                 await fetch('https://www.tikwm.com/api/?url=test', { method: 'HEAD', mode: 'no-cors' });
                 serverPing = Date.now() - pingStart;
-            } catch (e) {
-                serverPing = Date.now() - startTime;
-            }
+            } catch (e) { serverPing = Date.now() - startTime; }
             try {
                 const dlStart = Date.now();
-                const testUrl = 'https://speed.cloudflare.com/__down?bytes=1048576';
-                const res = await fetch(testUrl, { cache: 'no-store' });
+                const res = await fetch('https://speed.cloudflare.com/__down?bytes=1048576', { cache: 'no-store' });
                 const blob = await res.blob();
                 const dlTime = (Date.now() - dlStart) / 1000;
-                const sizeMB = blob.size / 1024 / 1024;
-                downloadSpeed = (sizeMB / dlTime).toFixed(2);
+                downloadSpeed = ((blob.size / 1024 / 1024) / dlTime).toFixed(2);
                 downloadStatus = 'Sukses';
-            } catch (e) {
-                downloadSpeed = 0;
-                downloadStatus = 'Gagal';
-            }
+            } catch (e) { downloadSpeed = 0; downloadStatus = 'Gagal'; }
             return `
                 <div class="result-card">
                     <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-signal"></i> Hasil Test Ping</p>
@@ -587,20 +725,12 @@
             document.getElementById('maintenance-overlay').style.display = 'flex';
         }
 
-        function hideBanOverlay() {
-            document.getElementById('maintenance-overlay').style.display = 'none';
-        }
+        function hideBanOverlay() { document.getElementById('maintenance-overlay').style.display = 'none'; }
 
         async function processTikTok(url) {
             const limit = checkDailyLimit();
             if (!limit.allowed) {
-                addBubble(`
-                    <div class="limit-notice">
-                        🚫 <b>Limit Harian Habis boskuh</b><br>
-                        Udah mencapai batas maksimal hari ini<br>
-                        <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
-                    </div>
-                `, 'ai');
+                addBubble(`<div class="limit-notice">🚫 <b>Limit Harian Habis boskuh</b><br><small>Reset otomatis jam ${formatResetTime(limit.resetTime)}</small></div>`, 'ai');
                 return;
             }
             isDownloading = true;
@@ -611,16 +741,9 @@
                 chatWindow.removeChild(loading);
 
                 if (json.code === -1 && json.msg && json.msg.includes('frequent')) {
-                    isBanned = true;
-                    banEndTime = Date.now() + TIKWM_BAN_DURATION;
+                    isBanned = true; banEndTime = Date.now() + TIKWM_BAN_DURATION;
                     showBanOverlay('SERVER LAGI DOWN', 'TUNGGU 60 DETIK BOSS');
-                    addBubble(`🚫 SERVER down 60 detik. Sabar ya bosku`, 'ai');
-
-                    setTimeout(() => {
-                        isBanned = false;
-                        hideBanOverlay();
-                        addBubble(`✅ Server udah kelar. Bisa download lagi boskuh`, 'ai');
-                    }, TIKWM_BAN_DURATION);
+                    setTimeout(() => { isBanned = false; hideBanOverlay(); }, TIKWM_BAN_DURATION);
                     return;
                 }
 
@@ -630,16 +753,8 @@
                     const d = json.data;
                     let resultHTML = `
                         <div class="result-card">
-                            <div style="font-size:0.75rem;margin-bottom:8px;opacity:0.7;text-align:right">
-                                Sisa request hari ini: ${currentLimit.remaining}/${currentLimit.max}
-                            </div>
-                            <div class="user-info">
-                                <img src="${d.author?.avatar || ''}">
-                                <div>
-                                    <div style="font-weight:bold">${d.author?.nickname || 'Unknown'}</div>
-                                    <div style="font-size:12px;opacity:0.7">@${d.author?.unique_id || 'unknown'}</div>
-                                </div>
-                            </div>
+                            <div style="font-size:0.75rem;margin-bottom:8px;opacity:0.7;text-align:right">Sisa limit: ${currentLimit.remaining}/${currentLimit.max}</div>
+                            <div class="user-info"><img src="${d.author?.avatar || ''}"><div><div style="font-weight:bold">${d.author?.nickname || 'Unknown'}</div><div style="font-size:12px;opacity:0.7">@${d.author?.unique_id || 'unknown'}</div></div></div>
                             <img src="${d.cover}" class="video-preview">
                             <div class="desc-box" id="desc-${d.id}">${d.title || 'Tidak ada deskripsi.'}</div>
                             <div class="tt-stats">
@@ -647,250 +762,125 @@
                                 <div><i class="fa-solid fa-comment"></i><div>${formatAngka(d.comment_count)}</div><span>Komen</span></div>
                                 <div><i class="fa-solid fa-share"></i><div>${formatAngka(d.share_count)}</div><span>Share</span></div>
                             </div>
-                            <div class="action-btns">
-                                <button class="btn-small btn-copy" onclick="copyText('desc-${d.id}', this)"><i class="fa-solid fa-copy"></i> Salin Desk</button>
+                            <div class="action-btns"><button class="btn-small btn-copy" onclick="copyText('desc-${d.id}', this)"><i class="fa-solid fa-copy"></i> Salin Desk</button>
                     `;
                     if (d.images && d.images.length > 0) {
-                        resultHTML += `
-                                <button class="btn-small btn-dl" onclick="downloadAllPhotos(${JSON.stringify(d.images).replace(/"/g, '&quot;')}, '${d.id}', this)">
-                                    <i class="fa-solid fa-images"></i> Download HD Semua
-                                </button>
-                            </div>
-                            <p style="font-size:0.75rem; margin-bottom:6px; color:var(--text-dim);">Konten Foto HD (${d.images.length}) - Gratis</p>
-                        `;
+                        resultHTML += `<button class="btn-small btn-dl" onclick="downloadAllPhotos(${JSON.stringify(d.images).replace(/"/g, '&quot;')}, '${d.id}', this)"><i class="fa-solid fa-images"></i> Download Semua</button></div>`;
                         d.images.forEach((imgUrl, index) => {
-                            resultHTML += `
-                                <div class="photo-item">
-                                    <img src="${imgUrl}" class="photo-thumb">
-                                    <span style="font-size:0.8rem; flex:1;">Foto HD ${index + 1}</span>
-                                    <button class="btn-small btn-dl" style="padding: 6px 12px; width:auto;" onclick="autoDownload('${imgUrl}', 'HDKU-HD-Photo-${index + 1}.jpg', this)">
-                                        <i class="fa-solid fa-download"></i> HD
-                                    </button>
-                                </div>
-                            `;
+                            resultHTML += `<div class="photo-item"><img src="${imgUrl}" class="photo-thumb"><span style="font-size:0.8rem; flex:1;">Foto ${index + 1}</span><button class="btn-small btn-dl" style="padding: 6px 12px; width:auto;" onclick="autoDownload('${imgUrl}', 'Photo-${index + 1}.jpg', this)"><i class="fa-solid fa-download"></i> HD</button></div>`;
                         });
                     } else {
-                        resultHTML += `
-                                <button class="btn-small btn-dl" onclick="autoDownload('${d.hdplay || d.play}', 'HDKU-HD-${d.id}.mp4', this)">
-                                    <i class="fa-solid fa-download"></i> Download HD MP4
-                                </button>
-                            </div>
-                        `;
-                        if (d.music) {
-                            resultHTML += `
-                                <div class="action-btns">
-                                    <button class="btn-small btn-dl" style="grid-column: span 2; background: #0088cc;" onclick="autoDownload('${d.music}', 'HDKU-${d.id}.mp3', this)">
-                                        <i class="fa-solid fa-music"></i> Download MP3
-                                    </button>
-                                </div>
-                            `;
-                        }
+                        resultHTML += `<button class="btn-small btn-dl" onclick="autoDownload('${d.hdplay || d.play}', 'Video-${d.id}.mp4', this)"><i class="fa-solid fa-download"></i> Download MP4</button></div>`;
+                        if (d.music) resultHTML += `<div class="action-btns"><button class="btn-small btn-dl" style="grid-column: span 2; background: #0088cc;" onclick="autoDownload('${d.music}', '${d.id}.mp3', this)"><i class="fa-solid fa-music"></i> Download MP3</button></div>`;
                     }
-                    resultHTML += `</div>`;
-                    addBubble(resultHTML, 'ai');
-                } else {
-                    addBubble('Konten TikTok tidak ditemukan. Cek linknya lagi', 'ai');
-                }
-            } catch (e) {
-                chatWindow.removeChild(loading);
-                addBubble('Gagal ambil data TikTok. Server lagi error atau link invalid', 'ai');
-            } finally {
-                setTimeout(() => { isDownloading = false; }, 3000);
-            }
+                    resultHTML += `</div>`; addBubble(resultHTML, 'ai');
+                } else { addBubble('Konten tidak ditemukan.', 'ai'); }
+            } catch (e) { chatWindow.removeChild(loading); addBubble('Gagal ambil data TikTok.', 'ai'); }
+            finally { setTimeout(() => { isDownloading = false; }, 3000); }
         }
 
         async function enhanceToHD() {
-            if (!lastUploadedImage) {
-                addBubble('Kirim foto dulu boss, baru ketik .hd', 'ai');
-                return;
-            }
-
+            if (!lastUploadedImage) { addBubble('Kirim foto dulu, baru ketik .hd', 'ai'); return; }
             const limit = checkDailyLimit();
             if (!limit.allowed || limit.remaining < 3) {
+                addBubble(`<div class="limit-notice">🚫 <b>Limit Kurang</b><br>Butuh 3 limit harian. Sisa: ${limit.remaining}</div>`, 'ai'); return;
+            }
+            const loading = addLoading();
+            try {
+                const img = new Image(); img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    const canvas = document.createElement('canvas'); const scale = 2;
+                    canvas.width = img.width * scale; canvas.height = img.height * scale;
+                    const ctx = canvas.getContext('2d'); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    canvas.toBlob((blob) => {
+                        chatWindow.removeChild(loading); incrementLimit(3);
+                        const currentLimit = checkDailyLimit(); const url = URL.createObjectURL(blob);
+                        addBubble(`<div class="result-card"><div style="font-size:0.75rem;text-align:right;opacity:0.7">Sisa request: ${currentLimit.remaining}/${currentLimit.max}</div><p style="font-weight:bold;margin-bottom:10px">✨ Upscale HD Sukses</p><img src="${url}" class="image-preview"><div class="action-btns"><button class="btn-small btn-dl" style="grid-column: span 2;" onclick="autoDownload('${url}', 'HD-${Date.now()}.png', this)"><i class="fa-solid fa-download"></i> Download Hasil</button></div></div>`, 'ai');
+                    }, 'image/png');
+                };
+                img.src = lastUploadedImage;
+            } catch (e) { chatWindow.removeChild(loading); addBubble('Error HD foto.', 'ai'); }
+        }
+
+        async function removeBackground() {
+            if (!lastUploadedImage) { addBubble('Kirim foto dulu bray, baru ketik .rmvbg', 'ai'); return; }
+            if (userData.status !== 'Premium') {
+                addBubble(`<div class="limit-notice" style="border-color: var(--gold); background: rgba(255, 215, 0, 0.05);">👑 <b>KHUSUS USER PREMIUM</b><br><small style="color: var(--gold)">Ketik <code>.cekprem</code> untuk upgrade.</small></div>`, 'ai'); return;
+            }
+            const limit = checkDailyLimit();
+            if (!limit.allowed || limit.remaining < 10) {
+                addBubble(`<div class="limit-notice">🚫 <b>Limit Kurang</b><br>Butuh 10 kuota harian. Sisa: ${limit.remaining}</div>`, 'ai'); return;
+            }
+            const loading = addLoading();
+            try {
+                const fetchRes = await fetch(lastUploadedImage); const blobFile = await fetchRes.blob();
+                const formData = new FormData(); formData.append("UPLOADCARE_PUB_KEY", "demopublickey"); formData.append("UPLOADCARE_STORE", "1"); formData.append("file", blobFile, `rmvbg_${Date.now()}.png`);
+                const upcareRes = await fetch("https://upload.uploadcare.com/base/", { method: "POST", body: formData });
+                const upcareJson = await upcareRes.json();
+                if (!upcareJson.file) { chatWindow.removeChild(loading); addBubble('❌ Gagal hosting file sementara.', 'ai'); return; }
+
+                const urlGambarPublik = `https://ucarecdn.com/${upcareJson.file}/`;
+                const endpointApi = `https://bintangapi.full.diskon.cloud/api/tools/removebg?url=${encodeURIComponent(urlGambarPublik)}`;
+                const imgResult = new Image(); imgResult.src = endpointApi; imgResult.className = "image-preview transparent-bg";
+
+                imgResult.onload = function() {
+                    chatWindow.removeChild(loading); incrementLimit(10); const currentLimit = checkDailyLimit();
+                    const resultCard = document.createElement('div'); resultCard.className = "result-card"; resultCard.style.border = "1px solid var(--gold)";
+                    resultCard.innerHTML = `<div style="font-size:0.75rem;color: var(--gold);text-align:right">Sisa request: ${currentLimit.remaining}/${currentLimit.max} (-10)</div><p style="font-weight:bold;margin-bottom:10px; color: var(--gold);"><i class="fa-solid fa-eraser"></i> Hapus BG Berhasil</p>`;
+                    resultCard.appendChild(imgResult);
+                    const actions = document.createElement('div'); actions.className = "action-btns"; actions.style.marginTop = "10px";
+                    actions.innerHTML = `<button class="btn-small btn-dl" style="grid-column: span 2; background: linear-gradient(135deg, #7b2ff7, #f107a3);" onclick="autoDownload('${endpointApi}', 'NoBG-${Date.now()}.png', this)"><i class="fa-solid fa-download"></i> Download PNG</button>`;
+                    resultCard.appendChild(actions);
+                    const bubbleAi = document.createElement('div'); bubbleAi.className = "bubble ai"; bubbleAi.appendChild(resultCard);
+                    chatWindow.appendChild(bubbleAi); chatWindow.scrollTop = chatWindow.scrollHeight; saveChat();
+                };
+                imgResult.onerror = function() { chatWindow.removeChild(loading); addBubble('❌ Server API Penuh, coba beberapa saat lagi.', 'ai'); };
+            } catch (e) { chatWindow.removeChild(loading); addBubble('❌ Terjadi gangguan internal.', 'ai'); }
+        }
+
+        async function handleMessage() {
+            const msg = input.value.trim(); if (!msg) return;
+            if (isBanned) {
+                const now = Date.now();
+                if (now < banEndTime) { alert(`🚫 Di-ban sementara. Tunggu ${Math.ceil((banEndTime - now) / 1000)} detik`); input.value = ''; return; }
+                else { isBanned = false; spamCount = 0; hideBanOverlay(); }
+            }
+
+            spamCount++; if (spamTimer) clearTimeout(spamTimer);
+            spamTimer = setTimeout(() => { spamCount = 0; }, SPAM_WINDOW);
+
+            if (spamCount >= SPAM_LIMIT) {
+                isBanned = true; banEndTime = Date.now() + CHAT_BAN_DURATION;
+                showBanOverlay('KAMU DI-BAN 5 MENIT', 'JANGAN SPAM CHAT BOSS😭'); input.value = ''; return;
+            }
+
+            addBubble(msg, 'user'); input.value = '';
+
+            if (msg === '.me') {
+                const currentLimit = checkDailyLimit();
+                const statusBadge = userData.status === 'Premium' ? '👑 Premium' : '👤 Reguler';
                 addBubble(`
-                    <div class="limit-notice">
-                        🚫 <b>Limit Kurang boskuh</b><br>
-                        Fitur <code>.hd</code> butuh 3 limit harian.<br>
-                        Sisa limitmu: <b>${limit.remaining}</b>/${limit.max}<br>
-                        <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
+                    <div class="result-card" style="border: 1px solid ${userData.status === 'Premium' ? 'var(--gold)' : 'var(--glass-border)'};">
+                        <p style="font-weight:bold; font-size:1.1rem; margin-bottom:12px; background: linear-gradient(90deg, #7b2ff7, #f107a3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="fa-solid fa-id-card"></i> PROFIL USER HDKU</p>
+                        <div style="font-size: 0.9rem; line-height: 1.8;">
+                            <div>📝 <b>Nama :</b> ${userData.nama}</div>
+                            <div>⚡ <b>Sisa Limit :</b> <code>${currentLimit.remaining}/${currentLimit.max}</code></div>
+                            <div>💎 <b>Status Akun :</b> <span style="${userData.status==='Premium'?'color:var(--gold); font-weight:bold;':''}">${statusBadge}</span></div>
+                        </div>
                     </div>
                 `, 'ai');
                 return;
             }
 
-            const loading = addLoading();
-            try {
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const scale = 2;
-                    canvas.width = img.width * scale;
-                    canvas.height = img.height * scale;
-                    const ctx = canvas.getContext('2d');
-                    ctx.imageSmoothingEnabled = true;
-                    ctx.imageSmoothingQuality = 'high';
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                    canvas.toBlob((blob) => {
-                        chatWindow.removeChild(loading);
-                        
-                        incrementLimit();
-                        incrementLimit();
-                        incrementLimit();
-                        
-                        const currentLimit = checkDailyLimit();
-                        const url = URL.createObjectURL(blob);
-                        const resultHTML = `
-                            <div class="result-card">
-                                <div style="font-size:0.75rem;margin-bottom:8px;opacity:0.7;text-align:right">
-                                    Sisa request hari ini: ${currentLimit.remaining}/${currentLimit.max} (-3 limit)
-                                </div>
-                                <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-wand-magic-sparkles"></i> Foto HD Berhasil</p>
-                                <img src="${url}" class="image-preview">
-                                <div class="action-btns">
-                                    <button class="btn-small btn-dl" style="grid-column: span 2;" onclick="autoDownload('${url}', 'HDKU-HD-${Date.now()}.png', this)">
-                                        <i class="fa-solid fa-download"></i> Download HD 2x
-                                    </button>
-                                </div>
-                                <p style="font-size:0.75rem;opacity:0.7;text-align:center;">Resolusi: ${canvas.width}x${canvas.height}</p>
-                            </div>
-                        `;
-                        addBubble(resultHTML, 'ai');
-                    }, 'image/png');
-                };
-                img.onerror = () => {
-                    chatWindow.removeChild(loading);
-                    addBubble('Gagal proses foto bg. Coba foto lain', 'ai');
-                };
-                img.src = lastUploadedImage;
-            } catch (e) {
-                chatWindow.removeChild(loading);
-                addBubble('Error HD-in foto bg', 'ai');
-            }
-        }
-
-        async function handleMessage() {
-            const msg = input.value.trim();
-            if (!msg) return;
-
-            if (isBanned) {
-                const now = Date.now();
-                if (now < banEndTime) {
-                    const sisaDetik = Math.ceil((banEndTime - now) / 1000);
-                    addBubble(`🚫 Kamu di-ban sementara. Tunggu ${sisaDetik} detik lagi`, 'ai');
-                    input.value = '';
-                    return;
-                } else {
-                    isBanned = false;
-                    spamCount = 0;
-                    hideBanOverlay();
-                }
-            }
-
-            spamCount++;
-            if (spamTimer) clearTimeout(spamTimer);
-            spamTimer = setTimeout(() => { spamCount = 0; }, SPAM_WINDOW);
-
-            if (spamCount >= SPAM_LIMIT) {
-                isBanned = true;
-                banEndTime = Date.now() + CHAT_BAN_DURATION;
-                showBanOverlay('KAMU DI-BAN 5 MENIT', 'JANGAN SPAM CHAT YA KON😭');
-                addBubble(`🚫 Kena ban 5 menit karena spam chat ${userData.nama || ''}`, 'ai');
-                input.value = '';
-
-                setTimeout(() => {
-                    isBanned = false;
-                    hideBanOverlay();
-                    addBubble(`✅ Ban udah kelar. Jangan spam lagi ya ${userData.nama || ''}`, 'ai');
-                }, CHAT_BAN_DURATION);
-                return;
-            }
-
-            addBubble(msg, 'user');
-            input.value = '';
-
-            if (msg.startsWith('.nama ')) {
-                userData.nama = msg.substring(6).trim();
-                saveUserData();
-                updateRegisterStatus();
-                addBubble(`Nama diset: ${userData.nama}`, 'ai');
-                return;
-            }
-            if (msg.startsWith('.umur ')) {
-                userData.umur = msg.substring(6).trim();
-                saveUserData();
-                updateRegisterStatus();
-                addBubble(`Umur diset: ${userData.umur}`, 'ai');
-                return;
-            }
-            if (msg.startsWith('.gender ')) {
-                userData.gender = msg.substring(8).trim();
-                saveUserData();
-                updateRegisterStatus();
-                addBubble(`Gender diset: ${userData.gender}`, 'ai');
-                return;
-            }
-            if (msg.startsWith('.sandi ')) {
-                userData.sandi = msg.substring(7).trim();
-                saveUserData();
-                updateRegisterStatus();
-                addBubble(`Sandi disimpan aman, ketik .menu untuk melihat semua fitur`, 'ai');
-                return;
-            }
-
-            if (!userData.nama ||!userData.umur ||!userData.gender ||!userData.sandi) {
-                addBubble('⚠️ Daftar dulu yaa! Ketik .nama, .umur, .gender, .sandi satu-satu', 'ai');
-                return;
-            }
-
-            if (msg === '.me') {
-                const currentLimit = checkDailyLimit();
-                const statusBadge = userData.status === 'Premium' ? '👑 Premium' : '👤 Reguler';
-                const premiumColor = userData.status === 'Premium' ? 'color: var(--gold); font-weight: bold;' : '';
-                
-                const profilHTML = `
-                    <div class="result-card" style="border: 1px solid ${userData.status === 'Premium' ? 'var(--gold)' : 'var(--glass-border)'};">
-                        <p style="font-weight:bold; font-size:1.1rem; margin-bottom:12px; background: linear-gradient(90deg, #7b2ff7, #f107a3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            <i class="fa-solid fa-id-card"></i> PROFIL USER HDKU
-                        </p>
-                        <div style="font-size: 0.9rem; line-height: 1.8;">
-                            <div>📝 <b>Nama :</b> ${userData.nama}</div>
-                            <div>🎂 <b>Umur :</b> ${userData.umur} Tahun</div>
-                            <div>⚥ <b>Gender :</b> ${userData.gender}</div>
-                            <div>⚡ <b>Sisa Limit :</b> <code>${currentLimit.remaining}/${currentLimit.max}</code></div>
-                            <div>💎 <b>Status Akun :</b> <span style="${premiumColor}">${statusBadge}</span></div>
-                        </div>
-                    </div>
-                `;
-                addBubble(profilHTML, 'ai');
-                return;
-            }
-
             if (msg === '.cekprem') {
-                const isPremium = userData.status === 'Premium';
-                let cekpremHTML = '';
-
-                if (isPremium) {
-                    let sisaWaktuStr = 'Tidak diketahui';
+                if (userData.status === 'Premium') {
+                    let sisaWaktuStr = 'Aktif';
                     if (userData.expiredTime) {
-                        const selisihMili = userData.expiredTime - Date.now();
-                        if (selisihMili > 0) {
-                            const totalJam = Math.floor(selisihMili / (1000 * 60 * 60));
-                            if (totalJam >= 24) {
-                                const hari = Math.floor(totalJam / 24);
-                                const jam = totalJam % 24;
-                                sisaWaktuStr = `${hari} Hari ${jam} Jam`;
-                            } else {
-                                const menit = Math.floor((selisihMili % (1000 * 60 * 60)) / (1000 * 60));
-                                sisaWaktuStr = `${totalJam} Jam ${menit} Menit`;
-                            }
-                        } else {
-                            sisaWaktuStr = 'Habis';
-                        }
+                        const selisih = userData.expiredTime - Date.now();
+                        if (selisih > 0) sisaWaktuStr = `${Math.floor(selisih / (1000 * 60 * 60 * 24))} Hari`;
                     }
-
-                    cekpremHTML = `
+                  cekpremHTML = `
                         <div class="result-card" style="border: 1px solid var(--gold); background: rgba(255, 215, 0, 0.03);">
                             <p style="font-weight:bold; font-size:1.1rem; margin-bottom:8px; color: var(--gold);">
                                 <i class="fa-solid fa-crown"></i> STATUS PREMIUM ACTIVE
@@ -931,10 +921,8 @@
                 addBubble(cekpremHTML, 'ai');
                 return;
             }
-
-            if (msg === '.event') {
+if (msg === '.event') {
                 const linkEventWeb = "https://pitnewbie.github.io/VIEW-GENERATOR.ID/";
-
                 const eventHTML = `
                     <div class="result-card" style="border: 1px solid var(--primary-glow); background: rgba(241, 7, 163, 0.05);">
                         <p style="font-weight:bold; font-size:1.1rem; margin-bottom:8px; background: linear-gradient(90deg, #f107a3, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
@@ -956,57 +944,27 @@
 
             if (msg.startsWith('.rdm ')) {
                 const kodeInput = msg.substring(5).trim();
-                if (!kodeInput) {
-                    addBubble('Format salah! Contoh: <code>.rdm KODENYA</code>', 'ai');
-                    return;
-                }
-
                 let usedCodes = JSON.parse(localStorage.getItem(REDEEMED_KEY) || '[]');
-
-                if (usedCodes.includes(kodeInput)) {
-                    addBubble('❌ <b>Gagal Redeem!</b> Kode ini sudah pernah kamu pakai sebelumnya.', 'ai');
-                    return;
-                }
+                if (usedCodes.includes(kodeInput)) { addBubble('❌ Kode sudah pernah kamu pakai!', 'ai'); return; }
 
                 if (PREMIUM_CODES[kodeInput]) {
-                    const dataKode = PREMIUM_CODES[kodeInput];
-                    userData.status = 'Premium';
-                    
-                    // Set waktu kedaluwarsa baru (akumulatif jika sebelumnya sudah premium)
+                    const dataKode = PREMIUM_CODES[kodeInput]; userData.status = 'Premium';
                     const masaTambahan = dataKode.days * 24 * 60 * 60 * 1000;
-                    if (userData.expiredTime && userData.expiredTime > Date.now()) {
-                        userData.expiredTime += masaTambahan;
-                    } else {
-                        userData.expiredTime = Date.now() + masaTambahan;
-                    }
-
-                    saveUserData();
-
-                    usedCodes.push(kodeInput);
-                    localStorage.setItem(REDEEMED_KEY, JSON.stringify(usedCodes));
-
-                    addBubble(`👑 <b>REDEEM BERHASIL!</b><br>Selamat, akun kamu sekarang aktif sebagai <b>${dataKode.label}</b>! Limit harianmu naik jadi <b>25 request/hari</b>. 🔥`, 'ai');
-                    return;
+                    userData.expiredTime = (userData.expiredTime && userData.expiredTime > Date.now()) ? userData.expiredTime + masaTambahan : Date.now() + masaTambahan;
+                    localStorage.setItem(USER_KEY, JSON.stringify(userData)); syncToFirebase(userData);
+                    usedCodes.push(kodeInput); localStorage.setItem(REDEEMED_KEY, JSON.stringify(usedCodes));
+                    addBubble(`👑 <b>REDEEM SUKSES!</b> Akun menjadi ${dataKode.label}!`, 'ai'); return;
                 }
-
                 if (LIMIT_CODES.includes(kodeInput)) {
-                    let currentBonus = getBonusLimit();
-                    currentBonus += 1; 
-                    localStorage.setItem(BONUS_LIMIT_KEY, currentBonus.toString());
-
-                    usedCodes.push(kodeInput);
-                    localStorage.setItem(REDEEMED_KEY, JSON.stringify(usedCodes));
-
-                    addBubble(`⚡ <b>REDEEM BERHASIL!</b><br>Kode bonus berhasil dicairkan. Kuota limit harianmu ditambah <b>+1 request</b> secara permanen/sesi!`, 'ai');
-                    return;
+                    let currentBonus = getBonusLimit(); currentBonus += 1; localStorage.setItem(BONUS_LIMIT_KEY, currentBonus.toString());
+                    usedCodes.push(kodeInput); localStorage.setItem(REDEEMED_KEY, JSON.stringify(usedCodes));
+                    addBubble(`⚡ <b>REDEEM SUKSES!</b> Limit permanen +1 request!`, 'ai'); return;
                 }
-
-                addBubble('❌ <b>Kode Salah!</b> Kode tidak valid atau tidak ditemukan.', 'ai');
-                return;
+                addBubble('❌ Kode salah atau invalid.', 'ai'); return;
             }
 
             if (msg === '.menu') {
-                addBubble(`<pre style="font-family: monospace; white-space: pre; margin: 0; font-size: 0.8rem; line-height: 1.3;">╭━━━『 *MENU HDKU AI* 』━━━╮
+                addBubble(`<pre style="font-family: monospace; font-size: 0.8rem; line-height: 1.3;">╭━━━『 *MENU HDKU AI* 』━━━╮
 │
 ├ *User & Akun*
 │ • .me - Cek info profil 
@@ -1022,6 +980,7 @@
 │
 ├ *Tools*
 │ • .hd - HDin foto 2x [kirim foto]
+│ • .rmvbg - Hapus BG Foto 👑 
 │ • .ping - Cek sinyal server
 │
 ╰━━━『 *HDKU AI B6* 』━━━╯</pre>`, 'ai');
@@ -1030,16 +989,11 @@
 
             if (msg === '.logout') {
                 localStorage.removeItem(USER_KEY);
-                userData = { nama: null, umur: null, gender: null, sandi: null, status: 'Reguler', expiredTime: null };
-                chatWindow.innerHTML = '';
-                document.getElementById('userBadge').textContent = '';
-                document.getElementById('registerOverlay').style.display = 'flex';
-                updateRegisterStatus();
-                addBubble('✅ Berhasil logout. Silakan daftar ulang.', 'ai');
-                return;
+                userData = { nama: null, sandi: null, status: 'Reguler', expiredTime: null };
+                chatWindow.innerHTML = ''; document.getElementById('userBadge').textContent = '';
+                checkRegister(); addBubble('✅ Berhasil keluar akun bray.', 'ai'); return;
             }
-
-            if (msg === '.owner') {
+if (msg === '.owner') {
                 const textAwal = `*Laporkan Bug*\n\nApakah kamu mau melaporkan bug ke owner?`;
                 const bubble = addBubble(textAwal, 'ai', ['Iya', 'Tidak']);
                 const buttons = bubble.querySelectorAll('.choice-btn');
@@ -1076,278 +1030,106 @@
                 return;
             }
 
-            if (msg === '.hd') {
-                enhanceToHD();
-                return;
-            }
+            if (msg === '.hd') { enhanceToHD(); return; }
+            if (msg === '.rmvbg') { removeBackground(); return; }
 
             if (msg.startsWith('.tt ')) {
-                const url = msg.substring(4).trim();
-                if (!url) {
-                    addBubble(`Link-nya mana? Format: <code>.tt https://tiktok.com/xxx</code>`, 'ai');
-                    return;
-                }
-                const limit = checkDailyLimit();
-                if (!limit.allowed) {
-                    addBubble(`
-                        <div class="limit-notice">
-                            🚫 <b>Limit Harian Habis boskuh</b><br>
-                            Sisa limit harianmu sudah habis.<br>
-                            <small style="opacity:0.7">Reset otomatis jam ${formatResetTime(limit.resetTime)}</small>
-                        </div>
-                    `, 'ai');
-                    return;
-                }
+                const url = msg.substring(4).trim(); if (!url) { addBubble(`Format: <code>.tt [link]</code>`, 'ai'); return; }
                 if (isDownloading) {
                     let timeLeft = 30;
-                    const queueBubble = addBubble(`
-                        <div class="queue-notice">
-                            ⏳ <b>Sedang menunggu antrian...</b><br>
-                            Sisa waktu: <span id="queueTimer">${timeLeft}</span> detik<br>
-                            <small style="opacity:0.7">Biar server tikwm aman dari limit</small>
-                        </div>
-                    `, 'ai');
+                    const queueBubble = addBubble(`<div class="queue-notice">⏳ <b>Menunggu antrian...</b> <span id="queueTimer">30</span>s</div>`, 'ai');
                     queueInterval = setInterval(() => {
-                        timeLeft--;
-                        const timerEl = queueBubble.querySelector('#queueTimer');
-                        if (timerEl) timerEl.textContent = timeLeft;
-                        if (timeLeft <= 0) {
-                            clearInterval(queueInterval);
-                            chatWindow.removeChild(queueBubble);
-                            saveChat();
-                            processTikTok(url);
-                        }
-                    }, 1000);
-                    return;
+                        timeLeft--; const timerEl = queueBubble.querySelector('#queueTimer'); if (timerEl) timerEl.textContent = timeLeft;
+                        if (timeLeft <= 0) { clearInterval(queueInterval); chatWindow.removeChild(queueBubble); processTikTok(url); }
+                    }, 1000); return;
                 }
                 processTikTok(url);
-
             } else if (msg.startsWith('.yt ')) {
-                const url = msg.substring(4).trim();
-                if (!url) {
-                    addBubble(`Link YouTube-nya mana? Format: <code>.yt https://youtube.com/watch?v=xxx</code>`, 'ai');
-                    return;
-                }
+                const url = msg.substring(4).trim(); if (!url) { addBubble(`Format: <code>.yt [link]</code>`, 'ai'); return; }
                 const loading = addLoading();
                 try {
-                    const res = await fetch('https://co.wuk.sh/api/json', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                        body: JSON.stringify({ url: url })
-                    });
-                    const json = await res.json();
-                    chatWindow.removeChild(loading);
+                    const res = await fetch('https://co.wuk.sh/api/json', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ url: url }) });
+                    const json = await res.json(); chatWindow.removeChild(loading);
                     if (json.status === 'success' || json.status === 'redirect' || json.status === 'stream') {
-                        const thumb = json.thumb || '';
-                        const title = json.title || 'Video YouTube';
-                        const author = json.author || 'Unknown';
-                        const duration = json.duration? formatDuration(json.duration) : '';
-                        let resultHTML = `
-                            <div class="result-card">
-                                <img src="${thumb}" class="video-preview">
-                                <div class="desc-box" id="yt-desc-${Date.now()}">${title}</div>
-                                <div class="video-info">
-                                    <span><i class="fa-solid fa-user"></i> ${author}</span>
-                                    ${duration? `<span><i class="fa-solid fa-clock"></i> ${duration}</span>` : ''}
-                                </div>
-                        `;
+                        let resultHTML = `<div class="result-card"><img src="${json.thumb || ''}" class="video-preview"><div class="desc-box">${json.title || 'Video'}</div>`;
                         if (json.picker && json.picker.length > 0) {
-                            resultHTML += `<p style="font-size:0.75rem; margin-bottom:6px; color:var(--text-dim);">Pilih Kualitas:</p><div class="quality-btns">`;
-                            json.picker.forEach(item => {
-                                if (item.url) {
-                                    resultHTML += `
-                                        <button class="btn-small btn-quality" onclick="autoDownload('${item.url}', 'HDKU-YT-${item.quality || 'video'}.mp4', this)">
-                                            ${item.quality || item.type}
-                                        </button>
-                                    `;
-                                }
-                            });
+                            resultHTML += `<div class="quality-btns">`;
+                            json.picker.forEach(item => { if (item.url) resultHTML += `<button class="btn-small btn-quality" onclick="autoDownload('${item.url}', 'YT-${item.quality}.mp4', this)">${item.quality || item.type}</button>`; });
                             resultHTML += `</div>`;
                         } else if (json.url) {
-                            resultHTML += `
-                                <div class="action-btns">
-                                    <button class="btn-small btn-dl-yt" style="grid-column: span 2;" onclick="autoDownload('${json.url}', 'HDKU-YT.mp4', this)">
-                                        <i class="fa-solid fa-download"></i> Download Video
-                                    </button>
-                                </div>
-                            `;
+                            resultHTML += `<div class="action-btns"><button class="btn-small btn-dl-yt" style="grid-column: span 2;" onclick="autoDownload('${json.url}', 'YT.mp4', this)"><i class="fa-solid fa-download"></i> Download Video</button></div>`;
                         }
-                        if (json.audio) {
-                            resultHTML += `
-                                <div class="action-btns">
-                                    <button class="btn-small btn-dl-yt" style="grid-column: span 2; background: #555;" onclick="autoDownload('${json.audio}', 'HDKU-YT-Audio.mp3', this)">
-                                        <i class="fa-solid fa-music"></i> Download Audio Only
-                                    </button>
-                                </div>
-                            `;
-                        }
-                        resultHTML += `</div>`;
-                        addBubble(resultHTML, 'ai');
-                    } else {
-                        addBubble(`Gagal download YouTube: ${json.text || 'Video tidak ditemukan/private'}`, 'ai');
-                    }
-                } catch (e) {
-                    chatWindow.removeChild(loading);
-                    addBubble('Gagal ambil data, server lagi error ( untuk sementara fitur YouTube tidak berfungsi ), ketik .menu untuk lihat semua fitur', 'ai');
-                }
-
+                        resultHTML += `</div>`; addBubble(resultHTML, 'ai');
+                    } else { addBubble('Gagal memuat video YouTube.', 'ai'); }
+                } catch (e) { chatWindow.removeChild(loading); addBubble('Fitur YouTube maintenance.', 'ai'); }
             } else if (msg === '.ping') {
-                const loading = addLoading();
-                pingTest().then(result => {
-                    chatWindow.removeChild(loading);
-                    addBubble(result, 'ai');
-                });
-
-            } else {
-                addBubble('Ketik <code>.menu</code> buat liat semua fitur', 'ai');
-            }
+                const loading = addLoading(); pingTest().then(result => { chatWindow.removeChild(loading); addBubble(result, 'ai'); });
+            } else { addBubble('Ketik <code>.menu</code> untuk melihat daftar perintah.', 'ai'); }
         }
 
         async function autoDownload(url, name, btnElement) {
-            const btn = btnElement;
-            const oldTxt = btn.innerHTML;
+            const btn = btnElement; const oldTxt = btn.innerHTML;
             try {
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>...';
-
-                const response = await fetch(url);
-                const blob = await response.blob();
-                const blobUrl = window.URL.createObjectURL(blob);
-
-                const a = document.createElement('a');
-                a.href = blobUrl;
-                a.download = name;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(blobUrl);
-
+                btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>...';
+                let targetUrl = url;
+                if (url.includes('bintangapi.full.diskon.cloud') || url.includes('ucarecdn.com')) targetUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                const response = await fetch(targetUrl); if (!response.ok) throw new Error();
+                const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a'); a.href = blobUrl; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a); window.URL.revokeObjectURL(blobUrl);
                 btn.innerHTML = '<i class="fa-solid fa-check"></i> Sukses';
             } catch (e) {
-                alert('Gagal download otomatis. Coba klik kanan -> Save As');
-                btn.innerHTML = oldTxt;
-            } finally {
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.innerHTML = oldTxt;
-                }, 2000);
-            }
+                alert('Tahan gambarnya/video lalu klik "Simpan" manual jika otomatis gagal bray!'); btn.innerHTML = oldTxt;
+            } finally { setTimeout(() => { btn.disabled = false; btn.innerHTML = oldTxt; }, 2000); }
         }
 
         async function downloadAllPhotos(images, id, btnElement) {
-            const btn = btnElement;
-            const oldTxt = btn.innerHTML;
+            const btn = btnElement; const oldTxt = btn.innerHTML;
             try {
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Downloading...';
-
-                for (let i = 0; i < images.length; i++) {
-                    await autoDownload(images[i], `HDKU-Slide-${id}-${i + 1}.jpg`, btn);
-                    await new Promise(r => setTimeout(r, 500));
-                }
-
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Semua Selesai';
-            } catch (e) {
-                alert('Gagal download semua foto');
-            } finally {
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.innerHTML = oldTxt;
-                }, 2000);
-            }
+                btn.disabled = true; btn.innerHTML = 'Downloading...';
+                for (let i = 0; i < images.length; i++) { await autoDownload(images[i], `Slide-${id}-${i + 1}.jpg`, btn); await new Promise(r => setTimeout(r, 400)); }
+                btn.innerHTML = 'Selesai ✨';
+            } catch (e) { alert('Gagal download massal'); }
+            finally { setTimeout(() => { btn.disabled = false; btn.innerHTML = oldTxt; }, 2000); }
         }
 
         function copyText(elementId, btnElement) {
-            const txt = document.getElementById(elementId).innerText;
-            const btn = btnElement;
-            const originalTxt = btn.innerHTML;
-
+            const txt = document.getElementById(elementId).innerText; const btn = btnElement; const originalTxt = btn.innerHTML;
             navigator.clipboard.writeText(txt).then(() => {
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
-                btn.style.background = "var(--primary)";
-                setTimeout(() => {
-                    btn.innerHTML = originalTxt;
-                    btn.style.background = "#333";
-                }, 2000);
+                btn.innerHTML = 'Tersalin!'; setTimeout(() => { btn.innerHTML = originalTxt; }, 2000);
             }).catch(() => {
-                const textArea = document.createElement("textarea");
-                textArea.value = txt;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
-                setTimeout(() => { btn.innerHTML = originalTxt; }, 2000);
+                const t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t);
+                btn.innerHTML = 'Tersalin!'; setTimeout(() => { btn.innerHTML = originalTxt; }, 2000);
             });
         }
 
         fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                addBubble('File harus gambar boss📸', 'ai');
-                return;
-            }
+            const file = e.target.files[0]; if (!file) return;
             const reader = new FileReader();
             reader.onload = (event) => {
                 lastUploadedImage = event.target.result;
-                const previewHTML = `
-                    <div class="result-card">
-                        <p style="font-weight:bold;margin-bottom:10px"><i class="fa-solid fa-image"></i> Foto Siap di-HD-in</p>
-                        <img src="${lastUploadedImage}" class="image-preview">
-                        <p style="font-size:0.8rem;opacity:0.7;text-align:center;">Ketik <code>.hd</code> buat upscale 2x</p>
-                    </div>
-                `;
-                addBubble(previewHTML, 'ai');
+                addBubble(`<div class="result-card"><p style="font-weight:bold;"><i class="fa-solid fa-image"></i> Berhasil Dimuat</p><img src="${lastUploadedImage}" class="image-preview"><p style="font-size:0.8rem;text-align:center;">Ketik <code>.hd</code> atau <code>.rmvbg</code> (👑)</p></div>`, 'ai');
             };
             reader.readAsDataURL(file);
         });
 
         sendBtn.onclick = handleMessage;
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleMessage();
-        });
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleMessage(); });
 
         function showWelcome() {
-            addBubble(`Selamat datang di HDKU Ai v20.5, HDKU Ai adalah ai downloader buatan yang dikembangkan oleh PitNewbie.<br><br><b>Info Lengkap:</b><br>: <a href="https://whatsapp.com/channel/0029Vb6678635fLqu0pxqx2K" class="wa-link" target="_blank">Klik di sini</a>`, "ai");
+            addBubble(`Selamat datang di HDKU Ai v20.5, dikembangkan oleh PitNewbie.<br><br><b>Info Saluran:</b><br> <a href="https://whatsapp.com/channel/0029Vb6678635fLqu0pxqx2K" class="wa-link" target="_blank">Klik di sini</a>`, "ai");
         }
-
-        loadChat();
 
         async function tampilkanIklanOtomatis() {
-            const linkIklan = "https://vt.tiktok.com/ZS9KpMMEN/"; 
-            const idIklan = "iklan_v1";
-
+            const linkIklan = "https://vt.tiktok.com/ZS9KpMMEN/"; const idIklan = "iklan_v1";
             if (sessionStorage.getItem(idIklan)) return;
-
             try {
-                const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(linkIklan)}`);
-                const json = await res.json();
-                
+                const res = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(linkIklan)}`); const json = await res.json();
                 if (json.code === 0) {
-                    const d = json.data;
-                    const adHTML = `
-                        <div class="result-card" style="border: 1px solid gold; background: rgba(255, 215, 0, 0.05); animation: slideUp 0.5s ease;">
-                            <p style="color: gold; font-weight: bold; font-size: 0.75rem; margin-bottom: 8px;">
-                                <i class="fa-solid fa-star"></i> REKOMENDASI OWNER
-                            </p>
-                            <img src="${d.cover}" class="video-preview" style="border-radius: 10px; height: 180px; width: 100%; object-fit: cover;">
-                            <div style="font-size: 0.85rem; margin: 8px 0; color: #fff; font-weight: 500;">${d.title}</div>
-                            <a href="${linkIklan}" target="_blank" style="text-decoration: none;">
-                                <button class="btn-small" style="background: linear-gradient(90deg, #7b2ff7, #f107a3); width: 100%; border: none; padding: 12px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                                    <i class="fa-brands fa-tiktok"></i> Tonton VT Sekarang
-                                </button>
-                            </a>
-                        </div>
-                    `;
-                    addBubble(adHTML, 'ai');
+                    addBubble(`<div class="result-card" style="border: 1px solid gold;"><p style="color: gold; font-weight: bold; font-size: 0.75rem;">⭐ REKOMENDASI OWNER</p><img src="${json.data.cover}" class="video-preview" style="height:150px;"><div style="font-size:0.85rem;margin:6px 0;">${json.data.title}</div><a href="${linkIklan}" target="_blank"><button class="btn-small" style="background: linear-gradient(90deg, #7b2ff7, #f107a3); width:100%;">Tonton VT Sekarang</button></a></div>`, 'ai');
                     sessionStorage.setItem(idIklan, 'true');
                 }
-            } catch (e) {
-                console.log("Gagal menampilkan iklan");
-            }
+            } catch (e) {}
         }
-
         setTimeout(tampilkanIklanOtomatis, 60000);
     </script>
 </body>
