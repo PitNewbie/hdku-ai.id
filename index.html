@@ -522,6 +522,7 @@
         }
 
         async function syncToFirebase(userObj) {
+            // OPTIMASI: Hanya kirim data penting saat dibutuhkan saja, tidak otomatis jalan tiap menit
             if (!window.firebaseDb || !userObj.nama || !userObj.sandi) return;
             try {
                 const cleanKey = userObj.nama.replace(/[\.\#\$\[\]]/g, "-");
@@ -921,7 +922,7 @@
                 addBubble(cekpremHTML, 'ai');
                 return;
             }
-if (msg === '.event') {
+            if (msg === '.event') {
                 const linkEventWeb = "https://pitnewbie.github.io/VIEW-GENERATOR.ID/";
                 const eventHTML = `
                     <div class="result-card" style="border: 1px solid var(--primary-glow); background: rgba(241, 7, 163, 0.05);">
@@ -993,7 +994,7 @@ if (msg === '.event') {
                 chatWindow.innerHTML = ''; document.getElementById('userBadge').textContent = '';
                 checkRegister(); addBubble('✅ Berhasil keluar akun bray.', 'ai'); return;
             }
-if (msg === '.owner') {
+            if (msg === '.owner') {
                 const textAwal = `*Laporkan Bug*\n\nApakah kamu mau melaporkan bug ke owner?`;
                 const bubble = addBubble(textAwal, 'ai', ['Iya', 'Tidak']);
                 const buttons = bubble.querySelectorAll('.choice-btn');
