@@ -771,8 +771,8 @@
                             resultHTML += `<div class="photo-item"><img src="${imgUrl}" class="photo-thumb"><span style="font-size:0.8rem; flex:1;">Foto ${index + 1}</span><button class="btn-small btn-dl" style="padding: 6px 12px; width:auto;" onclick="autoDownload('${imgUrl}', 'Photo-${index + 1}.jpg', this)"><i class="fa-solid fa-download"></i> HD</button></div>`;
                         });
                     } else {
-                        resultHTML += `<button class="btn-small btn-dl" onclick="autoDownload('${d.hdplay || d.play}', 'Video-${d.id}.mp4', this)"><i class="fa-solid fa-download"></i> Download MP4</button></div>`;
-                        if (d.music) resultHTML += `<div class="action-btns"><button class="btn-small btn-dl" style="grid-column: span 2; background: #0088cc;" onclick="autoDownload('${d.music}', '${d.id}.mp3', this)"><i class="fa-solid fa-music"></i> Download MP3</button></div>`;
+                        resultHTML += `<button class="btn-small btn-dl" onclick="autoDownload('${d.hdplay || d.play}', 'HdkuVid-${d.id}.mp4', this)"><i class="fa-solid fa-download"></i> Download MP4</button></div>`;
+                        if (d.music) resultHTML += `<div class="action-btns"><button class="btn-small btn-dl" style="grid-column: span 2; background: #0088cc;" onclick="autoDownload('${d.music}', 'HdkuSong-${d.id}.mp3', this)"><i class="fa-solid fa-music"></i> Download MP3</button></div>`;
                     }
                     resultHTML += `</div>`; addBubble(resultHTML, 'ai');
                 } else { addBubble('Konten tidak ditemukan.', 'ai'); }
